@@ -79,15 +79,17 @@ export default {
         schedule_job_id: this.schedule_job_id,
       });
 
-      this.list = res.data.list;
-      this.total = res.data.total;
+      if (res.code == 0) {
+        this.list = res.data.list;
+        this.total = res.data.total;
 
-      this.statusInfo = {
-        total: res.data.total,
-        success: res.data.success,
-        error: res.data.error,
-      };
-
+        this.statusInfo = {
+          total: res.data.total,
+          success: res.data.success,
+          error: res.data.error,
+        };
+      }
+      
       this.listLoading = false;
     },
 

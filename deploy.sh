@@ -1,4 +1,4 @@
-# npm run build:prod && \
+npm run build:prod && \
 
 
 # 拷贝静态文件

@@ -5,7 +5,10 @@
 
     <div style="height:20px"></div>
 
-    <ScheduleTable :data="list" @success="getData"/>
+    <ScheduleTable
+      :data="list"
+      @success="getData"
+    />
   </div>
 </template>
 
@@ -34,10 +37,10 @@ export default {
   methods: {
     async getData() {
       const res = await this.$Http.scheduleGetJobs();
-      if(res){
+
+      if (res.code == 0) {
         this.list = res.data;
       }
-      
     },
   },
 

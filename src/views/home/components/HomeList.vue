@@ -53,7 +53,7 @@ export default {
 <style lang="scss" scoped>
 .progress-list {
   // height: 100%;
-  padding: 28px;
+  padding-left: 28px;
   display: flex;
   flex-direction: column;
   justify-content: space-around;
@@ -75,7 +75,7 @@ export default {
         border-radius: 5px;
         width: 10px;
         height: 10px;
-        margin-right: 13px;
+        // margin-right: 6px;
         background: #f66;
       }
       // padding-right: 200px;

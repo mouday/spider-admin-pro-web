@@ -1,7 +1,7 @@
 import axios from "axios";
 import qs from "qs";
 import dataApi from "./dataApi";
-import { Message } from "element-ui";
+import SingleMessage from "@/components/mo-ui/message/index.js";
 import Store from "@/store/index.js";
 
 const instance = axios.create({
@@ -35,7 +35,8 @@ instance.interceptors.response.use(
     return res.data;
   },
   err => {
-    Message.error("网络请求出错, 请检查网络");
+    SingleMessage.error("网络请求出错, 请检查网络");
+    return {}
   }
 );
 
