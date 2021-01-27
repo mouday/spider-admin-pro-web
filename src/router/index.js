@@ -70,7 +70,7 @@ export const constantRoutes = [
         component: () => import("@/views/project/projectIndex"),
         meta: { title: "项目列表", icon: "project" }
       },
-      
+
       {
         path: "version/:project",
         name: "project-version",
@@ -84,14 +84,88 @@ export const constantRoutes = [
         component: () => import("@/views/spider/SpiderIndex"),
         meta: { title: "Spider列表", icon: "table" },
         hidden: true
-      },
+      }
+    ]
+  },
+
+  {
+    path: "/spider",
+    component: Layout,
+    redirect: "/spider/list",
+    name: "spider",
+    meta: { title: "程序列表", icon: "project" },
+    children: [
       {
-        path: "job/:project",
-        name: "project-job",
+        path: "list",
+        name: "spider-list",
+        component: () => import("@/views/spider/SpiderIndex"),
+        meta: { title: "Spider", icon: "table" },
+      }
+    ]
+  },
+
+  
+
+  {
+    path: "/schedule",
+    component: Layout,
+    redirect: "/schedule/list",
+    name: "schedule",
+    meta: { title: "定时任务", icon: "schedule" },
+    children: [
+      {
+        path: "list",
+        name: "schedule-list",
+        component: () => import("@/views/schedule/ScheduleIndex"),
+        meta: { title: "定时任务", icon: "schedule" }
+      }
+    ]
+  },
+
+  {
+    path: "/schedule-log",
+    component: Layout,
+    redirect: "/schedule-log/list",
+    name: "schedule",
+    meta: { title: "调度日志", icon: "schedule" },
+    children: [
+      {
+        path: "list",
+        name: "schedule-log-list",
+        component: () => import("@/views/schedule-log/ScheduleLogIndex"),
+        meta: { title: "调度日志", icon: "form" }
+      }
+    ]
+  },
+  {
+    path: "/job",
+    component: Layout,
+    redirect: "/job/list",
+    name: "job",
+    meta: { title: "任务列表", icon: "schedule" },
+    children: [
+      {
+        path: "list",
+        name: "job-list",
         component: () => import("@/views/job/JobIndex"),
         meta: { title: "任务列表", icon: "table" },
-        hidden: true
-      },
+      }
+    ]
+  },
+
+  {
+    path: "/stats",
+    component: Layout,
+    redirect: "/stats/list",
+    name: "stats",
+    meta: { title: "运行统计", icon: "schedule" },
+    children: [
+      {
+        path: "list",
+        name: "stats-list",
+        component: () => import("@/views/stats/StatsIndex"),
+        meta: { title: "运行统计", icon: "form" }
+      }
     ]
   },
   {
@@ -113,7 +187,6 @@ export const constantRoutes = [
         component: () => import("@/views/log/LogProject"),
         meta: { title: "项目日志", icon: "table" },
         hidden: true
-
       },
       {
         path: ":project/:spider",
@@ -132,41 +205,6 @@ export const constantRoutes = [
     ]
   },
 
-  {
-    path: "/schedule",
-    component: Layout,
-    redirect: "/schedule/list",
-    name: "schedule",
-    meta: { title: "定时任务", icon: "schedule" },
-    children: [
-      {
-        path: "list",
-        name: "schedule-list",
-        component: () => import("@/views/schedule/ScheduleIndex"),
-        meta: { title: "定时任务", icon: "schedule" }
-      },
-    ]
-  },
-
-  {
-    path: "/schedule-log",
-    component: Layout,
-    redirect: "/schedule-log/list",
-    name: "schedule",
-    meta: { title: "调度日志", icon: "schedule" },
-    children: [
-      {
-        path: "list",
-        name: "schedule-log-list",
-        component: () => import("@/views/schedule-log/ScheduleLogIndex"),
-        meta: { title: "调度日志", icon: "form" }
-      },
-    ]
-  },
-
-
-  
-  
   // 404 page must be placed at the end !!!
   { path: "*", redirect: "/404", hidden: true }
 ];

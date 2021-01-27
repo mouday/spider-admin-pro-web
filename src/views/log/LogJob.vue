@@ -1,5 +1,12 @@
 <template>
   <div class="app-container">
+    <AutoRefresh
+      size="small"
+      @refresh="getData"
+    />
+
+    <div style="height:20px;"></div>
+
     <div
       class="log-content"
       v-loading="listLoading"
@@ -10,12 +17,16 @@
 </template>
 
 <script>
+import AutoRefresh from '@/views/commom/AutoRefresh.vue';
+
 export default {
   name: '',
 
   props: [],
 
-  components: {},
+  components: {
+    AutoRefresh,
+  },
 
   data() {
     return {

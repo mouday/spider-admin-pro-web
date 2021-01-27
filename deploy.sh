@@ -1,10 +1,10 @@
+# rm -rf ./dist && \
+
 npm run build:prod && \
 
-
 # 拷贝静态文件
-cp -r ./dist/* ../spider_admin_server/spider_admin_pro/web/public
-# cp -r ./dist/index.html ../spider_admin_server/spider_admin_pro/web/static && \
 
+cp -r ./dist/* ../spider_admin_server/spider_admin_pro/web/public
 
 echo '部署完成'
 echo '**************************************'

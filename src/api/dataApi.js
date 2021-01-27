@@ -50,4 +50,8 @@ module.exports = {
   systemSystemData: '/system/systemData',
   systemSystemConfig: '/system/systemConfig',
 
+  // 状态收集
+  statsCollectionListItem: 'statsCollection/listItem',
+  statsCollectionDelete: 'statsCollection/delete'
+
 };

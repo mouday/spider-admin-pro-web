@@ -3,7 +3,9 @@
     <JobTool
       :statusInfo="statusInfo"
       :status.sync="status"
+      :project.sync="project"
       @status-change="handleStatusChange"
+      @project-change="handleProjcetChange"
       @success="getData"
     />
 
@@ -12,6 +14,7 @@
     <JobTable
       v-loading="listLoading"
       :data="list"
+      :project="project"
     />
   </div>
 </template>
@@ -61,7 +64,7 @@ export default {
         this.statusInfo.pending = res.data.pending;
         this.statusInfo.running = res.data.running;
         this.statusInfo.finished = res.data.finished;
-      } else{
+      } else {
         this.$message.error(res.msg);
       }
 
@@ -71,11 +74,26 @@ export default {
     handleStatusChange() {
       this.getData();
     },
+
+    handleProjcetChange(val) {
+      if (val) {
+        this.project = val;
+        localStorage.setItem('project', val);
+        this.getData();
+      } else {
+        this.$message.error('请选择项目');
+      }
+    },
   },
 
   created() {
-    this.project = this.$route.params.project;
-    this.getData();
+    let project = this.$route.query.project;
+    
+    if(!project){
+      project = localStorage.getItem('project');
+    }
+
+    this.handleProjcetChange(project)
   },
 };
 </script>

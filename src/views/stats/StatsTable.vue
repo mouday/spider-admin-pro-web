@@ -19,7 +19,7 @@
         align="center"
       >
         <template slot-scope="scope">
-          {{scope.row.project}}
+          {{scope.row.project || '-'}}
         </template>
       </el-table-column>
 
@@ -35,77 +35,82 @@
       </el-table-column>
 
       <el-table-column
-        label="运行参数"
-        align="center"
-      >
-        <template slot-scope="scope">
-          <mo-text :text="scope.row.options"></mo-text>
-        </template>
-      </el-table-column>
-
-      <el-table-column
-        label="调度状态"
+        label="收集数量"
         align="center"
         width="80px"
       >
         <template slot-scope="scope">
-          <i
-            v-if="scope.row.status"
-            class="el-icon-circle-check"
-            style="color:#67C23A;"
-          ></i>
-          <i
-            v-else
-            class="el-icon-circle-close"
-            style="color:#F56C6C;"
-          ></i>
+          <mo-text :text="scope.row.item_scraped_count + ''"></mo-text>
         </template>
       </el-table-column>
 
       <el-table-column
-        label="错误消息"
-        align="center"
-      >
-        <template slot-scope="scope">
-
-          <mo-text :text="scope.row.message"></mo-text>
-        </template>
-      </el-table-column>
-
-      <el-table-column
-        label="运行状态"
+        label="丢弃数量"
         align="center"
         width="80px"
       >
         <template slot-scope="scope">
-          {{scope.row.run_status || '-'}}
+          <mo-text :text="scope.row.item_dropped_count + ''"></mo-text>
         </template>
       </el-table-column>
 
       <el-table-column
-        label="item"
+        label="错误日志"
         align="center"
         width="80px"
       >
         <template slot-scope="scope">
-          {{scope.row.item_count || '-'}}
+          <mo-text :text="scope.row.log_error_count + ''"></mo-text>
         </template>
       </el-table-column>
 
       <el-table-column
-        label="error"
-        align="center"
-        width="80px"
+        label="持续时间"
+        align="right"
+        width="90px"
       >
         <template slot-scope="scope">
-          {{scope.row.log_error_count || '-'}}
+          <mo-text :text="scope.row.duration_str"></mo-text>
         </template>
       </el-table-column>
 
       <el-table-column
-        label="Spider日志"
+        label="开始时间"
         align="center"
-        width="100px"
+        width="180px"
+      >
+        <template slot-scope="scope">
+
+          {{scope.row.start_time}}
+
+        </template>
+      </el-table-column>
+
+      <el-table-column
+        label="结束时间"
+        align="center"
+        width="180px"
+      >
+        <template slot-scope="scope">
+
+          {{scope.row.finish_time}}
+
+        </template>
+      </el-table-column>
+
+      <el-table-column
+        label="结束原因"
+        align="center"
+      >
+        <template slot-scope="scope">
+          <mo-text :text="scope.row.finish_reason"></mo-text>
+        </template>
+      </el-table-column>
+
+      <el-table-column
+        label="运行日志"
+        align="center"
+        width="80px"
       >
         <template slot-scope="scope">
 
@@ -116,19 +121,6 @@
 
         </template>
       </el-table-column>
-
-      <el-table-column
-        label="调度时间"
-        align="center"
-        width="180px"
-      >
-        <template slot-scope="scope">
-
-          {{scope.row.create_time}}
-
-        </template>
-      </el-table-column>
-
     </mo-table>
   </div>
 </template>

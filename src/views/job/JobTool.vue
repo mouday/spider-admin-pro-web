@@ -10,6 +10,12 @@
       <el-radio-button label="finished">已结束 {{statusInfo.finished}}</el-radio-button>
     </el-radio-group>
 
+    <ProjectSelect
+      style="margin-left:20px"
+      size="small"
+      :value.sync="_project"
+    />
+
     <JobCancelAll
       style="margin-left:20px;"
       :project="project"
@@ -27,14 +33,17 @@
 <script>
 import AutoRefresh from '@/views/commom/AutoRefresh.vue';
 import JobCancelAll from './JobCancelAll.vue';
+import ProjectSelect from '@/views/project/ProjectSelect.vue';
 
 export default {
   name: '',
 
-  components: { AutoRefresh, JobCancelAll },
+  components: { AutoRefresh, JobCancelAll, ProjectSelect },
 
   props: {
     status: { type: String },
+
+    project: { type: String, default: '' },
 
     // {total、finished、pending、running}
     statusInfo: {
@@ -46,9 +55,7 @@ export default {
   },
 
   data() {
-    return {
-      project: '',
-    };
+    return {};
   },
 
   computed: {
@@ -61,13 +68,22 @@ export default {
         this.$emit('status-change', val);
       },
     },
+
+    _project: {
+      get() {
+        return this.project;
+      },
+
+      set(val) {
+        this.$emit('update:project', val);
+        this.$emit('project-change', val);
+      },
+    },
   },
 
   methods: {},
 
-  created() {
-    this.project = this.$route.params.project;
-  },
+  created() {},
 };
 </script>
 

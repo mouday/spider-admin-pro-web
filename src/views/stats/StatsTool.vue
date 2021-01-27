@@ -1,18 +1,7 @@
 <template>
   <div class="">
 
-    <el-radio-group
-      v-model="_status"
-      size="small"
-    >
-      <el-radio-button label="total">全部 {{statusInfo.total}}</el-radio-button>
-      <el-radio-button label="success">成功 {{statusInfo.success}}</el-radio-button>
-      <el-radio-button label="error">失败 {{statusInfo.error}}</el-radio-button>
-
-    </el-radio-group>
-
     <ProjectSelect
-      style="margin-left:20px"
       size="small"
       :value.sync="_project"
       :clearable="true"
@@ -29,7 +18,7 @@
       @change="handleSpiderChange"
     />
 
-    <ScheduleLogRemove
+    <StatsRemove
       style="margin-left:20px"
       :status="status"
       :project="project"
@@ -56,7 +45,7 @@
 // import ScheduleRemoveAllJob from './ScheduleRemoveAllJob.vue';
 import ProjectSelect from '@/views/project/ProjectSelect.vue';
 import SpiderSearch from '@/views/spider/SpiderSearch.vue';
-import ScheduleLogRemove from './ScheduleLogRemove.vue';
+import StatsRemove from './StatsRemove.vue';
 import AutoRefresh from '@/views/commom/AutoRefresh.vue';
 
 export default {
@@ -80,7 +69,7 @@ export default {
   components: {
     ProjectSelect,
     SpiderSearch,
-    ScheduleLogRemove,
+    StatsRemove,
     AutoRefresh,
 
     // ScheduleAdd,

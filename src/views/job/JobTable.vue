@@ -105,13 +105,15 @@ import JobCancel from './JobCancel.vue';
 export default {
   name: '',
 
-  props: [],
+  props: {
+    project: { type: String, default: '' },
+  },
 
   components: { JobCancel },
 
   data() {
     return {
-      project: '',
+      
     };
   },
 
@@ -122,7 +124,7 @@ export default {
   },
 
   created() {
-    this.project = this.$route.params.project;
+    
     this.getData();
   },
 };
