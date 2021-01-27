@@ -7,7 +7,7 @@
 
     <div style="height:20px;"></div>
 
-    <SpiderTable :data="list" />
+    <SpiderTable :data="list" :project="project"/>
   </div>
 </template>
 

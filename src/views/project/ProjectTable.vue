@@ -30,7 +30,7 @@
         <template slot-scope="scope">
           <router-link :to="{'name': 'project-version', params: {project: scope.row.project }}">
             <i class="el-icon-folder-opened"></i> 版本
-            </router-link>
+          </router-link>
         </template>
       </el-table-column>
 
@@ -39,7 +39,7 @@
         align="center"
       >
         <template slot-scope="scope">
-          <router-link :to="{'name': 'project-spider', params: {project: scope.row.project }}">
+          <router-link :to="{'name': 'spider-list', query: {project: scope.row.project }}">
             <i class="el-icon-tickets"></i> Spider
           </router-link>
         </template>
@@ -50,7 +50,7 @@
         align="center"
       >
         <template slot-scope="scope">
-          <router-link :to="{'name': 'project-job', params: {project: scope.row.project }}">
+          <router-link :to="{name: 'job-list', query: {project: scope.row.project }}">
             <i class="el-icon-date"></i> 任务
           </router-link>
         </template>
@@ -63,7 +63,7 @@
         <template slot-scope="scope">
           <router-link :to="{'name': 'logs-project', params: {project: scope.row.project }}">
             <i class="el-icon-document"></i> 日志
-            </router-link>
+          </router-link>
         </template>
       </el-table-column>
 
@@ -73,7 +73,10 @@
         width="100px"
       >
         <template slot-scope="scope">
-          <ProjectAdd :project="scope.row.project" type="version"/>
+          <ProjectAdd
+            :project="scope.row.project"
+            type="version"
+          />
         </template>
       </el-table-column>
 
@@ -83,7 +86,10 @@
         width="100px"
       >
         <template slot-scope="scope">
-          <ProjectDelete :project="scope.row.project" @success="$emit('success')"/>
+          <ProjectDelete
+            :project="scope.row.project"
+            @success="$emit('success')"
+          />
         </template>
       </el-table-column>
     </mo-table>
@@ -91,7 +97,7 @@
 </template>
 
 <script>
-import ProjectDelete from "./ProjectDelete.vue";
+import ProjectDelete from './ProjectDelete.vue';
 import ProjectAdd from './ProjectAdd.vue';
 
 export default {
@@ -99,7 +105,7 @@ export default {
 
   props: [],
 
-  components: {ProjectDelete, ProjectAdd},
+  components: { ProjectDelete, ProjectAdd },
 
   data() {
     return {};

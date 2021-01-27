@@ -66,13 +66,15 @@ import ScheduleAdd from '@/views/schedule/ScheduleAdd.vue';
 export default {
   name: '',
 
-  props: [],
+  props: {
+    project: { type: String, default: '' },
+  },
 
   components: { SpiderSchedule, ScheduleAdd },
 
   data() {
     return {
-      project: '',
+      
     };
   },
 
@@ -83,7 +85,6 @@ export default {
   },
 
   created() {
-    this.project = this.$route.params.project;
     this.getData();
   },
 };

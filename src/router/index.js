@@ -78,13 +78,6 @@ export const constantRoutes = [
         meta: { title: "版本列表", icon: "table" },
         hidden: true
       },
-      {
-        path: "spider/:project",
-        name: "project-spider",
-        component: () => import("@/views/spider/SpiderIndex"),
-        meta: { title: "Spider列表", icon: "table" },
-        hidden: true
-      }
     ]
   },
 
@@ -103,9 +96,6 @@ export const constantRoutes = [
       }
     ]
   },
-
-  
-
   {
     path: "/schedule",
     component: Layout,
