@@ -1,6 +1,6 @@
 # rm -rf ./dist && \
 
-echo '更新代码前先删除文件夹';
+echo '更新代码前先删除文件夹 dist、public';
 
 npm run build:prod && \
 
