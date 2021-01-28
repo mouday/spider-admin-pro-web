@@ -27,8 +27,9 @@
 
       </el-scrollbar>
     </div>
-
-    <Info />
+    
+    <!-- 收起时不显示 -->
+    <Info v-if="sidebar.opened"/>
 
   </div>
 </template>
