@@ -27,9 +27,10 @@ instance.interceptors.response.use(
     if(res.data.code == 4000){
       Store.dispatch('user/resetToken')
       // 如果路径是登录页，就不跳转
-      if(window.location.pathname != '/login'){
-        window.location.href = '/login'
-      }
+      // if(window.location.pathname != '/login'){
+      //   window.location.href = '/login'
+      // }
+      window.location.reload();
     }
 
     return res.data;

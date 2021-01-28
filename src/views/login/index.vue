@@ -8,7 +8,7 @@
       label-position="left">
 
       <div class="title-container">
-        <h3 class="title">Spider Admin</h3>
+        <h3 class="title">Spider Admin Pro</h3>
       </div>
 
       <el-form-item prop="username">
