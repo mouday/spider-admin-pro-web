@@ -133,13 +133,13 @@ export const constantRoutes = [
     component: Layout,
     redirect: "/job/list",
     name: "job",
-    meta: { title: "任务列表", icon: "schedule" },
+    meta: { title: "任务列表", icon: "list" },
     children: [
       {
         path: "list",
         name: "job-list",
         component: () => import("@/views/job/JobIndex"),
-        meta: { title: "任务列表", icon: "table" },
+        meta: { title: "任务列表", icon: "list" },
       }
     ]
   },
@@ -149,13 +149,13 @@ export const constantRoutes = [
     component: Layout,
     redirect: "/stats/list",
     name: "stats",
-    meta: { title: "运行统计", icon: "schedule" },
+    meta: { title: "运行统计", icon: "statistic" },
     children: [
       {
         path: "list",
         name: "stats-list",
         component: () => import("@/views/stats/StatsIndex"),
-        meta: { title: "运行统计", icon: "form" }
+        meta: { title: "运行统计", icon: "statistic" }
       }
     ]
   },
