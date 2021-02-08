@@ -31,7 +31,8 @@ instance.interceptors.response.use(
       // if(window.location.pathname != '/login'){
       //   window.location.href = '/login'
       // }
-      // window.location.reload();
+      removeToken()
+      window.location.reload();
     }
 
     return res.data;
