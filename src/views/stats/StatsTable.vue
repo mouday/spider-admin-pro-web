@@ -6,7 +6,7 @@
     >
       <el-table-column
         align="center"
-        label="ID"
+        label="序号"
         width="60"
       >
         <template slot-scope="scope">
@@ -57,7 +57,9 @@
       <el-table-column
         label="错误日志"
         align="center"
-        width="80px"
+        width="110px"
+        prop="log_error_count"
+        sortable="custom"
       >
         <template slot-scope="scope">
           <mo-text :text="scope.row.log_error_count + ''"></mo-text>
@@ -67,7 +69,9 @@
       <el-table-column
         label="持续时间"
         align="right"
-        width="90px"
+        width="110px"
+        prop="duration"
+        sortable="custom"
       >
         <template slot-scope="scope">
           <mo-text :text="scope.row.duration_str"></mo-text>
@@ -126,37 +130,8 @@
 </template>
 
 <script>
-// import ProjectDelete from "./ProjectDelete.vue";
-// import ScheduleJobStatus from './ScheduleJobStatus.vue';
-// import SpiderSchedule from '@/views/spider/SpiderSchedule.vue';
-// import ScheduleRemoveJob from './ScheduleRemoveJob.vue';
-// import ScheduleAdd from './ScheduleAdd.vue';
-
 export default {
   name: '',
-
-  props: [],
-
-  components: {
-    // ScheduleAdd,
-    // ScheduleJobStatus,
-    // SpiderSchedule,
-    // ScheduleRemoveJob,
-  },
-
-  data() {
-    return {};
-  },
-
-  computed: {},
-
-  methods: {
-    async getData() {},
-  },
-
-  created() {
-    this.getData();
-  },
 };
 </script>
 

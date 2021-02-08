@@ -6,7 +6,7 @@
     >
       <el-table-column
         align="center"
-        label="ID"
+        label="序号"
         width="60"
       >
         <template slot-scope="scope">
@@ -24,7 +24,7 @@
       </el-table-column>
 
       <el-table-column
-        label="Spider名称"
+        label="Spider"
         align="center"
       >
         <template slot-scope="scope">
@@ -47,7 +47,7 @@
         width="170px"
       >
         <template slot-scope="scope">
-          {{scope.row.next_run_time}}
+          {{scope.row.next_run_time || '-'}}
         </template>
       </el-table-column>
 
@@ -67,7 +67,21 @@
       </el-table-column>
 
       <el-table-column
-        label="执行日志"
+        label="运行统计"
+        align="center"
+        width="80px"
+      >
+        <template slot-scope="scope">
+          <router-link
+            :to="{'name': 'stats-list', query: {project: scope.row.kwargs.project, spider: scope.row.kwargs.spider}}"
+            target="_blank"
+          ><i class="el-icon-document"></i> 日志</router-link>
+
+        </template>
+      </el-table-column>
+
+      <el-table-column
+        label="运行日志"
         align="center"
         width="80px"
       >
@@ -88,8 +102,7 @@
         <template slot-scope="scope">
           <ScheduleJobStatus
             :job_id="scope.row.id"
-            :status="scope.row.status"
-            @success="$emit('success')"
+            v-model="scope.row.status"
           />
         </template>
       </el-table-column>

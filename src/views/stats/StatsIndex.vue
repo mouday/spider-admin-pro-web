@@ -14,6 +14,7 @@
     <StatsTable
       :data="list"
       v-loading="listLoading"
+      @sort-change="handleSortChange"
     />
 
     <mo-pagination
@@ -48,8 +49,12 @@ export default {
       size: 20,
       listLoading: false,
 
+      // 查询参数
       project: '',
       spider: '',
+      // 排序
+      orderProp: '',
+      orderType: '',
     };
   },
 
@@ -65,6 +70,9 @@ export default {
 
         project: this.project,
         spider: this.spider,
+
+        order_prop: this.orderProp,
+        order_type: this.orderType,
       });
 
       if (res.code == 0) {
@@ -85,6 +93,22 @@ export default {
     },
 
     handleSuccess() {
+      this.page = 1;
+      this.getData();
+    },
+
+    handleSortChange({ column, prop, order }) {
+      console.log(column, prop, order);
+
+      this.orderType = order;
+      
+      // 如果有排序方式再给排序字段
+      if (this.orderType) {
+        this.orderProp = prop;
+      } else {
+        this.orderProp = null;
+      }
+
       this.page = 1;
       this.getData();
     },

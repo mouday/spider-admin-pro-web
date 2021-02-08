@@ -6,7 +6,7 @@
   >
     <el-table-column
       align="center"
-      label="ID"
+      label="序号"
       width="60"
     >
       <template slot-scope="scope">
@@ -26,6 +26,7 @@
     <el-table-column
       label="上传时间"
       align="center"
+      width="170"
     >
       <template slot-scope="scope">
         {{scope.row.format_version}}
@@ -35,6 +36,7 @@
     <el-table-column
       label="移除版本"
       align="center"
+      width="100"
     >
       <template slot-scope="scope">
         <VersionDelete

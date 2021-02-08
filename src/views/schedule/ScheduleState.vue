@@ -21,9 +21,7 @@
 export default {
   name: '',
 
-  props: {
-    job_id: { type: String },
-  },
+  props: {},
 
   components: {},
 

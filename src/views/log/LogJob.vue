@@ -5,7 +5,7 @@
       @refresh="getData"
     />
 
-    <div style="height:20px;"></div>
+    <el-divider></el-divider>
 
     <div
       class="log-content"

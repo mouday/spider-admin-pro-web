@@ -6,7 +6,7 @@
     >
       <el-table-column
         align="center"
-        label="ID"
+        label="序号"
         width="60"
       >
         <template slot-scope="scope">

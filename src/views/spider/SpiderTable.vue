@@ -23,18 +23,51 @@
     </el-table-column>
 
     <el-table-column
-      label="查看日志"
+      label="调度日志"
       align="center"
+      width="80px"
     >
       <template slot-scope="scope">
-        <router-link :to="{'name': 'logs-project-spider', params: {project: project, spider: scope.row.spider }}">
-          <i class="el-icon-document"></i>查看</router-link>
+
+        <router-link
+          :to="{'name': 'schedule-log-list', query: {project: project, spider: scope.row.spider}}"
+          target="_blank"
+        ><i class="el-icon-document"></i> 日志</router-link>
+
+      </template>
+    </el-table-column>
+
+    <el-table-column
+      label="运行统计"
+      align="center"
+      width="80px"
+    >
+      <template slot-scope="scope">
+        <router-link
+          :to="{'name': 'stats-list', query: {project: project, spider: scope.row.spider}}"
+          target="_blank"
+        ><i class="el-icon-document"></i> 统计</router-link>
+
+      </template>
+    </el-table-column>
+
+    <el-table-column
+      label="运行日志"
+      align="center"
+      width="80px"
+    >
+      <template slot-scope="scope">
+        <router-link
+          :to="{'name': 'logs-project-spider', params: {project: project, spider: scope.row.spider }}"
+          target="_blank"
+        ><i class="el-icon-document"></i> 日志</router-link>
       </template>
     </el-table-column>
 
     <el-table-column
       label="添加任务"
       align="center"
+      width="100px"
     >
       <template slot-scope="scope">
         <ScheduleAdd
@@ -47,6 +80,7 @@
     <el-table-column
       label="运行Spider"
       align="center"
+      width="100px"
     >
       <template slot-scope="scope">
         <SpiderSchedule
@@ -73,9 +107,7 @@ export default {
   components: { SpiderSchedule, ScheduleAdd },
 
   data() {
-    return {
-      
-    };
+    return {};
   },
 
   computed: {},

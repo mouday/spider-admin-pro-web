@@ -1,12 +1,12 @@
 <template>
-  <div class="">
-    <el-button
-      v-bind="$attrs"
-      @click="handleDelete"
-      :icon="icon"
-      size="mini"
-    >{{btnText}}</el-button>
-  </div>
+  <el-switch
+    v-bind="$attrs"
+    v-on="$listeners"
+    active-value="running"
+    inactive-value="paused"
+    @change="handleChange"
+  >
+  </el-switch>
 </template>
 
 <script>
@@ -15,9 +15,7 @@ export default {
 
   props: {
     job_id: { type: String },
-
     // running、paused
-    status: { type: String },
   },
 
   components: {},
@@ -26,44 +24,30 @@ export default {
     return {};
   },
 
-  computed: {
-    btnText() {
-      if (this.status == 'paused') {
-        return '继续';
-      } else {
-        return '暂停';
-      }
-    },
-
-     icon() {
-      if (this.status == 'paused') {
-        return 'el-icon-video-play';
-      } else {
-        return 'el-icon-video-pause';
-      }
-    },
-
-    
-  },
+  computed: {},
 
   methods: {
-    async handleDelete() {
+    async handleChange(val) {
+      // console.log(val);
+
       let params = {
         job_id: this.job_id,
       };
 
       let res;
-      if (this.status == 'paused') {
+      if (val == 'running') {
         res = await this.$Http.scheduleResumeJob(params);
-      } else {
+      } else if (val == 'paused') {
         res = await this.$Http.schedulePauseJob(params);
+      } else {
+        throw Error('value is invalid');
       }
 
       if (res.code == 0) {
-        this.$message.success('操作成功');
-        this.$emit('success');
+        this.$msg.success('操作成功');
+        // this.$emit('success');
       } else {
-        this.$message.error(res.msg);
+        this.$msg.error(res.msg);
       }
     },
   },
