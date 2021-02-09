@@ -27,12 +27,10 @@
       <el-table-column
         label="IP地址"
         align="center"
-        width="100px"
+        width="120px"
       >
         <template slot-scope="scope">
-
           {{scope.row.ip}}
-
         </template>
       </el-table-column>
 
@@ -48,7 +46,7 @@
       <el-table-column
         label="操作系统"
         align="center"
-        width="110px"
+        width="120px"
       >
         <template slot-scope="scope">
           <mo-text :text="scope.row.system"></mo-text>
@@ -58,7 +56,7 @@
       <el-table-column
         label="浏览器"
         align="center"
-        width="80px"
+        width="120px"
       >
         <template slot-scope="scope">
           <mo-text :text="scope.row.browser"></mo-text>
@@ -81,8 +79,7 @@
         width="80px"
       >
         <template slot-scope="scope">
-
-          <Status :value="scope.row.result" />
+          <mo-status :value="scope.row.result" />
         </template>
       </el-table-column>
 
@@ -101,11 +98,8 @@
 </template>
 
 <script>
-import Status from '@/views/commom/Status.vue';
-
 export default {
   name: '',
-  components: { Status },
 };
 </script>
 

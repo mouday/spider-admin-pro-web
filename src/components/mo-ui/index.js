@@ -19,6 +19,7 @@ import AddButton from "./button/add-button/index.vue";
 import Join from "./join/index.vue";
 import Link from "./link/index.vue";
 import Text from "./text/index.vue";
+import Status from "./status/index.vue";
 
 const components = [
   AreaPicker,
@@ -38,6 +39,7 @@ const components = [
   Text,
   Link,
   AddButton,
+  Status
 ];
 
 const install = function(Vue, options) {

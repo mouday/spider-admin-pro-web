@@ -59,7 +59,7 @@
         width="80px"
       >
         <template slot-scope="scope">
-          <Status :value="scope.row.status" />
+          <mo-status :value="scope.row.status" />
         </template>
       </el-table-column>
 
@@ -145,11 +145,8 @@
 </template>
 
 <script>
-import Status from '@/views/commom/Status.vue';
-
 export default {
   name: '',
-  components: { Status },
 };
 </script>
 
