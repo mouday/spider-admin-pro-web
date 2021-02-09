@@ -1,13 +1,15 @@
 <template>
-    <el-table v-bind="$attrs"
-        v-on="$listeners"
-        border
-        header-row-class-name="table-header-row"
-        header-cell-class-name="table-header-cell"
-        class="base-table"
-        style="width: 100%;">
-        <slot></slot>
-    </el-table>
+  <el-table
+    v-bind="$attrs"
+    v-on="$listeners"
+    border
+    header-row-class-name="table-header-row"
+    header-cell-class-name="table-header-cell"
+    class="base-table"
+    style="width: 100%;"
+  >
+    <slot></slot>
+  </el-table>
 </template>
 
 <script>
@@ -16,7 +18,7 @@
  * https://element.eleme.cn/#/zh-CN/component/table
  */
 export default {
-  name: "MoTable",
+  name: 'MoTable',
 
   props: {},
 
@@ -30,17 +32,15 @@ export default {
 
   methods: {},
 
-  created() {}
+  created() {},
 };
 </script>
 
-<style lang="scss" scoped>
+<style lang="scss">
+// 表头颜色
 .table-header-row {
-  background-color: #e3e3e3;
-}
-
-/deep/ .table-header-cell {
-  background-color: #fafafa;
-  height: 40px;
+  .table-header-cell {
+    background-color: #fafafa;
+  }
 }
 </style>

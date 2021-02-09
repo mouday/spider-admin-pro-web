@@ -17,6 +17,7 @@
       <el-table-column
         label="项目名"
         align="center"
+        width="150px"
       >
         <template slot-scope="scope">
           {{scope.row.project || '-'}}
@@ -81,7 +82,7 @@
       <el-table-column
         label="开始时间"
         align="center"
-        width="180px"
+        width="170px"
       >
         <template slot-scope="scope">
 
@@ -93,7 +94,7 @@
       <el-table-column
         label="结束时间"
         align="center"
-        width="180px"
+        width="170px"
       >
         <template slot-scope="scope">
 
@@ -102,14 +103,14 @@
         </template>
       </el-table-column>
 
-      <el-table-column
+      <!-- <el-table-column
         label="结束原因"
         align="center"
       >
         <template slot-scope="scope">
           <mo-text :text="scope.row.finish_reason"></mo-text>
         </template>
-      </el-table-column>
+      </el-table-column> -->
 
       <el-table-column
         label="运行日志"

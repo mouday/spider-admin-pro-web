@@ -17,6 +17,7 @@
       <el-table-column
         label="项目名"
         align="center"
+        width="150px"
       >
         <template slot-scope="scope">
           {{scope.row.kwargs.project}}
@@ -33,8 +34,9 @@
       </el-table-column>
 
       <el-table-column
-        label="cron"
+        label="Cron"
         align="center"
+        width="120px"
       >
         <template slot-scope="scope">
           {{scope.row.kwargs.cron}}
@@ -95,9 +97,9 @@
       </el-table-column>
 
       <el-table-column
-        label="任务状态"
+        label="状态"
         align="center"
-        width="100px"
+        width="65"
       >
         <template slot-scope="scope">
           <ScheduleJobStatus
@@ -108,9 +110,9 @@
       </el-table-column>
 
       <el-table-column
-        label="执行任务"
+        label="执行"
         align="center"
-        width="100px"
+        width="65"
       >
         <template slot-scope="scope">
           <SpiderSchedule
@@ -121,9 +123,9 @@
 
       </el-table-column>
       <el-table-column
-        label="修改任务"
+        label="修改"
         align="center"
-        width="100px"
+        width="65"
       >
         <template slot-scope="scope">
           <ScheduleAdd
@@ -135,9 +137,9 @@
       </el-table-column>
 
       <el-table-column
-        label="移除任务"
+        label="移除"
         align="center"
-        width="100px"
+        width="65"
       >
         <template slot-scope="scope">
           <ScheduleRemoveJob

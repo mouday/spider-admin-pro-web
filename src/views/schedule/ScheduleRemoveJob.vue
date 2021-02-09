@@ -8,7 +8,7 @@
       v-bind="$attrs"
       icon="el-icon-delete"
       size="mini"
-    >移除</el-button>
+    ></el-button>
   </el-popconfirm>
 
 </template>

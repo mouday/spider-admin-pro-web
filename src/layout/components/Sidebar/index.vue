@@ -29,7 +29,7 @@
     </div>
     
     <!-- 收起时不显示 -->
-    <Info v-if="sidebar.opened"/>
+    <Info v-show="sidebar.opened"/>
 
   </div>
 </template>

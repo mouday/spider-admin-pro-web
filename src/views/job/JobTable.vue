@@ -14,7 +14,7 @@
     </el-table-column>
 
     <el-table-column
-      label="Spider名称"
+      label="Spider"
       align="center"
     >
       <template slot-scope="scope">
@@ -25,6 +25,7 @@
     <el-table-column
       label="状态"
       align="center"
+      width="80"
     >
       <template slot-scope="scope">
         {{scope.row.status }}
@@ -34,6 +35,7 @@
     <el-table-column
       label="持续时间"
       align="center"
+      width="80"
     >
       <template slot-scope="scope">
         <mo-text :text="scope.row.duration_str " />
@@ -43,7 +45,7 @@
     <el-table-column
       label="开始时间"
       align="center"
-      width="180px"
+      width="170px"
     >
       <template slot-scope="scope">
         <mo-text :text="scope.row.start_time " />
@@ -53,7 +55,7 @@
     <el-table-column
       label="结束时间"
       align="center"
-      width="180px"
+      width="170px"
     >
       <template slot-scope="scope">
         <mo-text :text="scope.row.end_time " />

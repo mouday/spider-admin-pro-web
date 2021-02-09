@@ -5,29 +5,22 @@
   >
     <div class="home-config">
       <p>
-        <i></i>
+        <i class="icon" style="background-color:#36cbcb;"></i>
+        <span>Spider Admin Version</span>
+        <span style="margin-left:20px;">{{spider_admin.version || '-'}}</span>
+      </p>
+
+      <p>
+        <i class="icon"></i>
         <span>Scrapyd</span>
         <span style="margin-left:20px;">{{scrapyd.url}}</span>
 
         <template>
           <span style="margin-left:20px;">
-            <span
-              v-if="scrapyd.status== true"
-              style="color:green;"
-            >状态正常</span>
-            <span
-              v-else-if="scrapyd.status== false"
-              style="color:red;"
-            >状态异常</span>
+            <mo-status :value="scrapyd.status"/>
           </span>
         </template>
 
-      </p>
-
-      <p>
-        <i style="background-color:#36cbcb;"></i>
-        <span>Spider Admin Version</span>
-        <span style="margin-left:20px;">{{spider_admin.version || '-'}}</span>
       </p>
     </div>
   </HomeCard>
@@ -78,7 +71,7 @@ export default {
     margin: 0;
     line-height: 2;
 
-    i {
+    i.icon {
       display: inline-block;
       border-radius: 5px;
       width: 10px;

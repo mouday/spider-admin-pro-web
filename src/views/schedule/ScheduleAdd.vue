@@ -1,11 +1,21 @@
 <template>
-  <span class="">
-    <el-button
+  <span class=""> 
+    <!-- 修改 -->
+    <el-button v-if="job_id"
       size="mini"
       @click="dialogVisible=true"
-      :icon="icon"
+      icon="el-icon-edit-outline"
       v-bind="$attrs"
-    >{{btnText}}</el-button>
+    ></el-button>
+
+    <!-- 添加 -->
+    <el-button
+      v-else
+      size="mini"
+      @click="dialogVisible=true"
+      icon="el-icon-document-add"
+      v-bind="$attrs"
+    >添加</el-button>
 
     <el-dialog
       :title="btnText + '任务'"

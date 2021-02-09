@@ -17,6 +17,7 @@
       <el-table-column
         label="项目名"
         align="center"
+        width="150px"
       >
         <template slot-scope="scope">
           {{scope.row.project}}
@@ -46,7 +47,7 @@
       <el-table-column
         label="调度模式"
         align="center"
-        width="80px"
+        width="80"
       >
         <template slot-scope="scope">
           {{scope.row.schedule_mode}}
@@ -66,6 +67,8 @@
       <el-table-column
         label="错误消息"
         align="center"
+        width="120"
+        show-overflow-tooltip
       >
         <template slot-scope="scope">
 
@@ -86,7 +89,7 @@
       <el-table-column
         label="item"
         align="center"
-        width="80px"
+        width="60"
       >
         <template slot-scope="scope">
           {{scope.row.item_count || '-'}}
@@ -96,7 +99,7 @@
       <el-table-column
         label="error"
         align="center"
-        width="80px"
+        width="60"
       >
         <template slot-scope="scope">
           {{scope.row.log_error_count || '-'}}
@@ -119,24 +122,22 @@
         width="80px"
       >
         <template slot-scope="scope">
-
           <router-link
+            v-if="scope.row.spider_job_id"
             :to="{'name': 'logs-project-spider-job', params: {project: scope.row.project, spider: scope.row.spider, job :scope.row.spider_job_id}}"
             target="_blank"
           ><i class="el-icon-document"></i> 日志</router-link>
-
+          <span v-else>-</span>
         </template>
       </el-table-column>
 
       <el-table-column
         label="调度时间"
         align="center"
-        width="180px"
+        width="170px"
       >
         <template slot-scope="scope">
-
           {{scope.row.create_time}}
-
         </template>
       </el-table-column>
 

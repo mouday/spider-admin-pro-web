@@ -1,12 +1,10 @@
 <template>
-  <div class="">
-    <el-button
-      v-bind="$attrs"
-      @click="handleSchedule"
-      size="mini"
-      icon="el-icon-video-play"
-    >运行</el-button>
-  </div>
+  <el-button
+    v-bind="$attrs"
+    @click="handleSchedule"
+    size="mini"
+    icon="el-icon-video-play"
+  ></el-button>
 </template>
 
 <script>
@@ -21,9 +19,7 @@ export default {
   components: {},
 
   data() {
-    return {
-      
-    };
+    return {};
   },
 
   computed: {},
@@ -43,9 +39,7 @@ export default {
     },
   },
 
-  created() {
-    
-  },
+  created() {},
 };
 </script>
 

@@ -56,7 +56,7 @@
       <el-table-column
         label="浏览器"
         align="center"
-        width="120px"
+        width="200px"
       >
         <template slot-scope="scope">
           <mo-text :text="scope.row.browser"></mo-text>
