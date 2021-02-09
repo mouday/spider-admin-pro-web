@@ -1,16 +1,23 @@
 <template>
-  <div class="">
-      <ScheduleAdd @success="$emit('success')"/>
-      
-      <ScheduleState style="margin-left:20px" @success="$emit('success')"/>
-      
-      <ScheduleRemoveAllJob style="margin-left:20px" @success="$emit('success')"/>
+  <div style="display: flex;">
+    <ScheduleAdd @success="handleSuccess" />
+
+    <ScheduleRemoveAllJob
+      style="margin-left:20px"
+      @success="handleSuccess"
+    />
+
+    <ScheduleState
+      style="margin-left:20px"
+      @success="handleSuccess"
+    />
+
   </div>
 </template>
 
 <script>
 import ScheduleAdd from './ScheduleAdd.vue';
-import ScheduleState from './ScheduleState.vue';
+import ScheduleState from './ScheduleState';
 import ScheduleRemoveAllJob from './ScheduleRemoveAllJob.vue';
 
 export default {
@@ -21,7 +28,7 @@ export default {
   components: {
     ScheduleAdd,
     ScheduleState,
-    ScheduleRemoveAllJob
+    ScheduleRemoveAllJob,
   },
 
   data() {
@@ -31,12 +38,12 @@ export default {
   computed: {},
 
   methods: {
-    async getData() {},
+    handleSuccess() {
+      this.$emit('success');
+    },
   },
 
-  created() {
-    this.getData();
-  },
+  created() {},
 };
 </script>
 

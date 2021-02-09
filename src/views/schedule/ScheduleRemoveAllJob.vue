@@ -1,12 +1,12 @@
 <template>
   <el-popconfirm
-    title="确定删除？"
+    title="确定移除所有任务？"
     @confirm="handleRemove"
   >
     <el-button
       slot="reference"
       v-bind="$attrs"
-      icon="el-icon-delete-solid"
+      icon="el-icon-delete"
       size="mini"
     >移除所有任务</el-button>
   </el-popconfirm>
