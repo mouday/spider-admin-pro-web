@@ -196,6 +196,24 @@ export const constantRoutes = [
     ]
   },
 
+  {
+    path: "/system",
+    component: Layout,
+    redirect: "/system/list",
+    name: "system",
+    meta: { title: "系统管理", icon: "login-log" },
+    children: [
+      {
+        path: "login-list",
+        name: "system-login-list",
+        component: () => import('@/views/system/SystemIndex'),
+        meta: { title: "登录日志", icon: "login-log" }
+      },
+    ]
+  },
+
+  
+
   // 404 page must be placed at the end !!!
   { path: "*", redirect: "/404", hidden: true }
 ];

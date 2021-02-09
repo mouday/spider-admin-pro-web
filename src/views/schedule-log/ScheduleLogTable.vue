@@ -59,16 +59,7 @@
         width="80px"
       >
         <template slot-scope="scope">
-          <i
-            v-if="scope.row.status"
-            class="el-icon-circle-check"
-            style="color:#67C23A;"
-          ></i>
-          <i
-            v-else
-            class="el-icon-circle-close"
-            style="color:#F56C6C;"
-          ></i>
+          <Status :value="scope.row.status" />
         </template>
       </el-table-column>
 
@@ -154,8 +145,11 @@
 </template>
 
 <script>
+import Status from '@/views/commom/Status.vue';
+
 export default {
   name: '',
+  components: { Status },
 };
 </script>
 

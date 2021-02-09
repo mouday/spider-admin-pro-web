@@ -52,6 +52,8 @@ module.exports = {
 
   // 状态收集
   statsCollectionListItem: 'statsCollection/listItem',
-  statsCollectionDelete: 'statsCollection/delete'
+  statsCollectionDelete: 'statsCollection/delete',
 
+  // 系统管理
+  actionHistoryLoginHistoryList: '/actionHistory/loginHistoryList',
 };
