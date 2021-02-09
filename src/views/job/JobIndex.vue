@@ -88,12 +88,16 @@ export default {
 
   created() {
     let project = this.$route.query.project;
-    
-    if(!project){
+
+    if (this.$route.query.status) {
+      this.status = this.$route.query.status;
+    }
+
+    if (!project) {
       project = localStorage.getItem('project');
     }
 
-    this.handleProjcetChange(project)
+    this.handleProjcetChange(project);
   },
 };
 </script>

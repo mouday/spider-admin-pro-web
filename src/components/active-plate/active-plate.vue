@@ -5,6 +5,7 @@
         class="item"
         v-for="item, index in infoList"
         :key="index"
+        @click="handleClick(item)"
       >
         <p
           class="num"
@@ -46,6 +47,13 @@ export default {
       ],
     };
   },
+
+  methods: {
+    handleClick(item) {
+      // console.log(item);
+      this.$router.push(item.route);
+    },
+  },
 };
 </script>
 
@@ -53,19 +61,25 @@ export default {
 .active-plate-main {
   width: 100%;
   height: 80px;
-  
 
-  ul{margin: 0;}
+  ul {
+    margin: 0;
+  }
 
   .active-list {
     display: flex;
     list-style: none;
     // padding-top:15px;
     .item {
+      cursor: pointer;
       position: relative;
       flex: 1;
       text-align: center;
+      padding-bottom: 5px;
 
+      &:hover {
+        background-color: WhiteSmoke;
+      }
       p {
         margin: 0;
       }
@@ -79,12 +93,12 @@ export default {
       }
       &::after {
         position: absolute;
-        top: 18px;
+        top: 0;
         right: 0;
         content: '';
         display: block;
         width: 1px;
-        height: 56px;
+        height: 100%;
         background: #e7eef0;
       }
       &:nth-last-of-type(1) {
