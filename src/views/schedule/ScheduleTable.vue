@@ -16,7 +16,8 @@
 
       <el-table-column
         label="项目名"
-        align="center"
+        header-align="center"
+        align="left"
         width="150px"
       >
         <template slot-scope="scope">
@@ -26,7 +27,10 @@
 
       <el-table-column
         label="Spider"
-        align="center"
+        header-align="center"
+        align="left"
+        prop="spider"
+        sortable
       >
         <template slot-scope="scope">
           {{scope.row.kwargs.spider}}

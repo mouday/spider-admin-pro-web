@@ -5,6 +5,7 @@
     v-on="$listeners"
     :fetch-suggestions="querySearch"
     placeholder="搜索Spider名"
+    clearable
     @select="handleSelect"
   >
     <template slot-scope="{ item }">

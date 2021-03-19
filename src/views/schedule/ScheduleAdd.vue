@@ -1,9 +1,10 @@
 <template>
-  <span class=""> 
+  <span class="">
     <!-- 修改 -->
-    <el-button v-if="job_id"
+    <el-button
+      v-if="job_id"
       size="mini"
-      @click="dialogVisible=true"
+      @click="handleDialogVisibleClick"
       icon="el-icon-edit-outline"
       v-bind="$attrs"
     ></el-button>
@@ -12,7 +13,7 @@
     <el-button
       v-else
       size="mini"
-      @click="dialogVisible=true"
+      @click="handleDialogVisibleClick"
       icon="el-icon-document-add"
       v-bind="$attrs"
     >添加</el-button>
@@ -199,11 +200,6 @@ export default {
   watch: {
     dialogVisible(val) {
       if (val) {
-        this.form.project = this.project;
-        this.form.spider = this.spider;
-        if (this.job_id) {
-          this.getData();
-        }
       }
     },
   },
@@ -234,9 +230,30 @@ export default {
       if (res.code == 0) {
         this.$message.success('添加成功');
         this.$emit('success');
+        this.$refs.form.resetFields();
         this.dialogVisible = false;
       } else {
         this.$message.error(res.msg);
+      }
+    },
+
+    handleDialogVisibleClick() {
+      this.dialogVisible = true;
+
+      if (this.project) {
+        this.form.project = this.project;
+      }
+
+      if (this.spider) {
+        this.form.spider = this.spider;
+      }
+
+      if (this.job_id) {
+        this.getData();
+      }
+
+      if (this.$refs.form) {
+        this.$refs.form.clearValidate();
       }
     },
   },

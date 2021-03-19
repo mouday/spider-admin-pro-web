@@ -8,6 +8,7 @@
     <ScheduleTable
       :data="list"
       @success="getData"
+      @sort-change="handleSortChange"
     />
   </div>
 </template>
@@ -29,6 +30,9 @@ export default {
   data() {
     return {
       list: [],
+       // 排序
+      orderProp: '',
+      orderType: '',
     };
   },
 
@@ -41,6 +45,21 @@ export default {
       if (res.code == 0) {
         this.list = res.data;
       }
+    },
+
+    handleSortChange({ column, prop, order }) {
+      console.log(column, prop, order);
+
+      this.orderType = order;
+      
+      // 如果有排序方式再给排序字段
+      if (this.orderType) {
+        this.orderProp = prop;
+      } else {
+        this.orderProp = null;
+      }
+
+      // this.getData();
     },
   },
 
