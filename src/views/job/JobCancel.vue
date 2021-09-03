@@ -36,6 +36,7 @@ export default {
 
       if (res.code == 0) {
         this.$message.success('取消成功');
+        this.$emit('success');
       } else {
         this.$message.error(res.msg);
       }

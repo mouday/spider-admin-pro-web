@@ -95,6 +95,7 @@
           :job="scope.row.id"
           :project="project"
           :disabled="scope.row.status=='finished'"
+          @success="$emit('success')"
         />
       </template>
     </el-table-column>

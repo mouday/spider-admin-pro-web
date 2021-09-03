@@ -15,6 +15,7 @@
       v-loading="listLoading"
       :data="list"
       :project="project"
+      @success="getData"
     />
   </div>
 </template>
