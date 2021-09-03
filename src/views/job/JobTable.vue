@@ -93,6 +93,7 @@
       <template slot-scope="scope">
         <JobCancel
           :job="scope.row.id"
+          :project="project"
           :disabled="scope.row.status=='finished'"
         />
       </template>
@@ -115,7 +116,7 @@ export default {
 
   data() {
     return {
-      
+
     };
   },
 
@@ -126,7 +127,7 @@ export default {
   },
 
   created() {
-    
+
     this.getData();
   },
 };

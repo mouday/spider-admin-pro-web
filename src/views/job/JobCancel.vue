@@ -14,13 +14,14 @@ export default {
 
   props: {
     job: { type: String },
+    project: { type: String },
   },
 
   components: {},
 
   data() {
     return {
-      project: '',
+      // project: '',
     };
   },
 
@@ -42,7 +43,7 @@ export default {
   },
 
   created() {
-    this.project = this.$route.params.project;
+    // this.project = this.$route.params.project;
   },
 };
 </script>
