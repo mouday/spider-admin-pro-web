@@ -3,10 +3,9 @@
     v-bind="$attrs"
     v-on="$listeners"
     border
-    header-row-class-name="table-header-row"
-    header-cell-class-name="table-header-cell"
-    class="base-table"
-    style="width: 100%;"
+    header-row-class-name="mo-table-header-row"
+    header-cell-class-name="mo-table-header-cell"
+    class="mo-table"
   >
     <slot></slot>
   </el-table>
@@ -25,7 +24,7 @@ export default {
   components: {},
 
   data() {
-    return {};
+    return {}
   },
 
   computed: {},
@@ -33,13 +32,17 @@ export default {
   methods: {},
 
   created() {},
-};
+}
 </script>
 
 <style lang="scss">
-// 表头颜色
-.table-header-row {
-  .table-header-cell {
+.mo-table {
+  width: 100%;
+}
+
+/* 表头背景颜色 */
+.mo-table-header-row {
+  th.mo-table-header-cell {
     background-color: #fafafa;
   }
 }
