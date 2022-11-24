@@ -14,7 +14,7 @@
     </el-table-column>
 
     <el-table-column
-      label="Spider名称"
+      label="Spider名称"
       align="center"
     >
       <template slot-scope="scope">
@@ -78,7 +78,7 @@
     </el-table-column>
 
     <el-table-column
-      label="运行Spider"
+      label="运行Spider"
       align="center"
       width="100px"
     >

@@ -14,7 +14,7 @@
     </el-table-column>
 
     <el-table-column
-      label="Spider"
+      label="Spider"
       align="center"
     >
       <template slot-scope="scope">

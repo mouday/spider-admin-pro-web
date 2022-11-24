@@ -13,7 +13,7 @@
         <el-dropdown-menu slot="dropdown" class="user-dropdown">
           <router-link to="/">
             <el-dropdown-item>
-              Home
+              首页
             </el-dropdown-item>
           </router-link>
           <!-- <a target="_blank" href="https://github.com/PanJiaChen/vue-admin-template/">
@@ -23,7 +23,7 @@
             <el-dropdown-item>Docs</el-dropdown-item>
           </a> -->
           <el-dropdown-item divided>
-            <span style="display:block;" @click="logout">Log Out</span>
+            <span style="display:block;" @click="logout">退出</span>
           </el-dropdown-item>
         </el-dropdown-menu>
       </el-dropdown>

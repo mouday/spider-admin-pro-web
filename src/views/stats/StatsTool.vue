@@ -1,6 +1,5 @@
 <template>
   <div class="">
-
     <ProjectSelect
       size="small"
       :value.sync="_project"
@@ -10,7 +9,7 @@
     />
 
     <SpiderSearch
-      style="margin-left:20px"
+      style="margin-left: 20px"
       size="small"
       :project="_project"
       :value.sync="_spider"
@@ -19,7 +18,7 @@
     />
 
     <StatsRemove
-      style="margin-left:20px"
+      style="margin-left: 20px"
       :status="status"
       :project="project"
       :spider="spider"
@@ -32,10 +31,28 @@
       
       <ScheduleRemoveAllJob style="margin-left:20px" @success="$emit('success')"/> -->
     <AutoRefresh
-      style="margin-left:20px;"
+      style="margin-left: 20px"
       :frequency="5000"
       @refresh="$emit('success')"
     />
+
+    <el-tooltip
+      effect="dark"
+      content=""
+      placement="top-start"
+    >
+      <div slot="content">
+        使用 <a
+          href="https://github.com/mouday/scrapy-util"
+          target="_blank"
+          >scrapy-util</a
+        > 收集运行日志
+      </div>
+      <i
+        class="el-icon-warning-outline"
+        style="color: #808080"
+      ></i>
+    </el-tooltip>
   </div>
 </template>
 
@@ -43,10 +60,10 @@
 // import ScheduleAdd from './ScheduleAdd.vue';
 // import ScheduleState from './ScheduleState.vue';
 // import ScheduleRemoveAllJob from './ScheduleRemoveAllJob.vue';
-import ProjectSelect from '@/views/project/ProjectSelect.vue';
-import SpiderSearch from '@/views/spider/SpiderSearch.vue';
-import StatsRemove from './StatsRemove.vue';
-import AutoRefresh from '@/views/commom/AutoRefresh.vue';
+import ProjectSelect from '@/views/project/ProjectSelect.vue'
+import SpiderSearch from '@/views/spider/SpiderSearch.vue'
+import StatsRemove from './StatsRemove.vue'
+import AutoRefresh from '@/views/commom/AutoRefresh.vue'
 
 export default {
   name: '',
@@ -61,7 +78,7 @@ export default {
     statusInfo: {
       type: Object,
       default: () => {
-        return {};
+        return {}
       },
     },
   },
@@ -78,36 +95,36 @@ export default {
   },
 
   data() {
-    return {};
+    return {}
   },
 
   computed: {
     _status: {
       get() {
-        return this.status;
+        return this.status
       },
       set(val) {
-        this.$emit('update:status', val);
-        this.$emit('status-change', val);
+        this.$emit('update:status', val)
+        this.$emit('status-change', val)
       },
     },
 
     _project: {
       get() {
-        return this.project;
+        return this.project
       },
 
       set(val) {
-        this.$emit('update:project', val);
-        this.$emit('project-change', val);
+        this.$emit('update:project', val)
+        this.$emit('project-change', val)
       },
     },
     _spider: {
       get() {
-        return this.spider;
+        return this.spider
       },
       set(val) {
-        this.$emit('update:spider', val);
+        this.$emit('update:spider', val)
       },
     },
   },
@@ -116,15 +133,14 @@ export default {
     async getData() {},
 
     handleSpiderChange(val) {
-      this.$emit('spider-change', val);
+      this.$emit('spider-change', val)
     },
   },
 
   created() {
-    this.getData();
+    this.getData()
   },
-};
+}
 </script>
 
-<style lang="scss" scoped>
-</style>
+<style lang="scss" scoped></style>

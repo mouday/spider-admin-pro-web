@@ -46,7 +46,7 @@
         </el-form-item>
 
         <el-form-item
-          label="Spider名称"
+          label="Spider名称"
           prop="spider"
           width="300px"
         >
@@ -162,7 +162,7 @@ export default {
         },
         spider: {
           required: true,
-          message: 'Spider名称必须填写',
+          message: 'Spider名称必须填写',
           trigger: 'change',
         },
         cron: {

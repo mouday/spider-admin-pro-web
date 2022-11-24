@@ -1,15 +1,15 @@
 <template>
   <div class="">
-
     <ProjectSelect
       size="small"
       :value.sync="_project"
+      @on-init="handleProjectSelectInit"
     />
   </div>
 </template>
 
 <script>
-import ProjectSelect from '@/views/project/ProjectSelect.vue';
+import ProjectSelect from '@/views/project/ProjectSelect.vue'
 
 export default {
   name: '',
@@ -21,27 +21,30 @@ export default {
   },
 
   data() {
-    return {};
+    return {}
   },
 
   computed: {
     _project: {
       get() {
-        return this.project;
+        return this.project
       },
 
       set(val) {
-        this.$emit('update:project', val);
-        this.$emit('project-change', val);
+        this.$emit('update:project', val)
+        this.$emit('project-change', val)
       },
     },
   },
 
-  methods: {},
+  methods: {
+    handleProjectSelectInit(data) {
+      this.$emit('on-init', data)
+    },
+  },
 
   created() {},
-};
+}
 </script>
 
-<style lang="scss" scoped>
-</style>
+<style lang="scss" scoped></style>

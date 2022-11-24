@@ -35,12 +35,12 @@
       </el-table-column>
 
       <el-table-column
-        label="查看Spider"
+        label="查看Spider"
         align="center"
       >
         <template slot-scope="scope">
           <router-link :to="{'name': 'spider-list', query: {project: scope.row.project }}">
-            <i class="el-icon-tickets"></i> Spider
+            <i class="el-icon-tickets"></i> Spider
           </router-link>
         </template>
       </el-table-column>
