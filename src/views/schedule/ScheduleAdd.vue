@@ -16,7 +16,8 @@
       @click="handleDialogVisibleClick"
       icon="el-icon-document-add"
       v-bind="$attrs"
-    >添加</el-button>
+      >添加</el-button
+    >
 
     <el-dialog
       :title="btnText + '任务'"
@@ -38,11 +39,11 @@
           width="300px"
         >
           <ProjectSelect
-            style="width:300px;"
+            style="width: 300px"
             :value.sync="form.project"
-            :disabled="project!=null || job_id!=null"
+            :disabled="project != null || job_id != null"
+            @on-init="handleProjectSelectInit"
           />
-
         </el-form-item>
 
         <el-form-item
@@ -51,12 +52,12 @@
           width="300px"
         >
           <SpiderSearch
-            style="width:300px;"
+            style="width: 300px"
             :project="form.project"
             :value.sync="form.spider"
-            :disabled="spider!=null || job_id!=null"
+            :disabled="spider != null || job_id != null"
+            @on-init="handleSpiderSearchInit"
           />
-
         </el-form-item>
 
         <el-form-item
@@ -64,7 +65,7 @@
           prop="cron"
         >
           <el-input
-            style="width:300px;"
+            style="width: 300px"
             type="text"
             v-model="form.cron"
             placeholder="分 时 日 月 周"
@@ -76,35 +77,35 @@
           prop="options"
         >
           <el-input
-            style="width:300px;"
+            style="width: 300px"
             type="textarea"
             rows="3"
             v-model="form.options"
             placeholder='any parameter is passed as spider args eg:{"setting": "DOWNLOAD_DELAY=2"}'
           ></el-input>
         </el-form-item>
-
       </el-form>
 
       <span slot="footer">
         <el-button
           size="small"
           @click="dialogVisible = false"
-        >取 消</el-button>
+          >取 消</el-button
+        >
         <el-button
           type="primary"
           size="small"
           @click="submit"
-        >确 定</el-button>
+          >确 定</el-button
+        >
       </span>
-
     </el-dialog>
   </span>
 </template>
 
 <script>
-import ProjectSelect from '@/views/project/ProjectSelect.vue';
-import SpiderSearch from '@/views/spider/SpiderSearch.vue';
+import ProjectSelect from '@/views/project/ProjectSelect.vue'
+import SpiderSearch from '@/views/spider/SpiderSearch.vue'
 
 export default {
   name: '',
@@ -120,29 +121,29 @@ export default {
   data() {
     var validateCron = (rule, value, callback) => {
       if (!value) {
-        return callback(new Error('cron表达式不能为空'));
+        return callback(new Error('cron表达式不能为空'))
       }
       let list = value.split(' ').filter((item) => {
-        return item.trim() != '';
-      });
+        return item.trim() != ''
+      })
 
       if (list.length != 5) {
-        return callback(new Error('cron表达式不正确'));
+        return callback(new Error('cron表达式不正确'))
       }
 
-      callback();
-    };
+      callback()
+    }
 
     var validateOptions = (rule, value, callback) => {
       if (value) {
         try {
-          JSON.parse(value);
+          JSON.parse(value)
         } catch (e) {
-          return callback(new Error('参数不是json字符串'));
+          return callback(new Error('参数不是json字符串'))
         }
       }
-      callback();
-    };
+      callback()
+    }
 
     return {
       dialogVisible: false,
@@ -176,23 +177,23 @@ export default {
           trigger: 'blur',
         },
       },
-    };
+    }
   },
 
   computed: {
     btnText() {
       if (this.job_id) {
-        return '修改';
+        return '修改'
       } else {
-        return '添加';
+        return '添加'
       }
     },
 
     icon() {
       if (this.job_id) {
-        return 'el-icon-edit-outline';
+        return 'el-icon-edit-outline'
       } else {
-        return 'el-icon-document-add';
+        return 'el-icon-document-add'
       }
     },
   },
@@ -208,59 +209,76 @@ export default {
     async getData() {
       const res = await this.$Http.scheduleJobDetail({
         job_id: this.job_id,
-      });
+      })
 
-      this.form = res.data.kwargs;
+      this.form = res.data.kwargs
     },
 
     submit() {
       this.$refs.form.validate((valid) => {
         if (valid) {
-          this.addVersion();
+          this.addVersion()
         }
-      });
+      })
     },
 
     async addVersion() {
       const res = await this.$Http.scheduleAddJob({
         job_id: this.job_id,
         ...this.form,
-      });
+      })
 
       if (res.code == 0) {
-        this.$message.success('添加成功');
-        this.$emit('success');
-        this.$refs.form.resetFields();
-        this.dialogVisible = false;
+        this.$message.success('添加成功')
+        this.$emit('success')
+        this.$refs.form.resetFields()
+        this.dialogVisible = false
       } else {
-        this.$message.error(res.msg);
+        this.$message.error(res.msg)
       }
     },
 
     handleDialogVisibleClick() {
-      this.dialogVisible = true;
+      this.dialogVisible = true
 
       if (this.project) {
-        this.form.project = this.project;
+        this.form.project = this.project
       }
 
       if (this.spider) {
-        this.form.spider = this.spider;
+        this.form.spider = this.spider
       }
 
       if (this.job_id) {
-        this.getData();
+        this.getData()
       }
 
       if (this.$refs.form) {
-        this.$refs.form.clearValidate();
+        this.$refs.form.clearValidate()
+      }
+    },
+
+    handleProjectSelectInit(data) {
+      // console.log(data)
+      if (!this.form.project) {
+        if (data && data.length > 0) {
+          this.form.project = data[0].project
+        }
+      }
+    },
+
+    handleSpiderSearchInit(data) {
+      // console.log(data)
+      if (!this.form.spider) {
+        if (data && data.length > 0) {
+          this.form.spider = data[0].spider
+        }
       }
     },
   },
 
   created() {},
-};
+}
 </script>
 
-<style lang="scss" scoped>
-</style>
+<style lang="scss" scoped></style>

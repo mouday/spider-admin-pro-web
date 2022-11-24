@@ -81,6 +81,7 @@ export default {
         project: this.project,
       });
       this.list = res.data;
+      this.$emit('on-init', res.data)
     },
   },
 
