@@ -52,7 +52,7 @@ export default {
         job: this.job,
       });
 
-      this.content = res;
+      this.content = res.data;
 
       this.listLoading = false;
     },
