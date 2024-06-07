@@ -75,7 +75,10 @@
     "vue-loader": "15.10.2",
     "vue-style-loader": "4.1.3",
     "vue-template-compiler": "2.6.10",
-    "webpack-bundle-analyzer": "^4.5.0"
+    "webpack-bundle-analyzer": "^4.5.0",
+    "regenerator-runtime": "0.14.0",
+    "postcss-loader": "3.0.0"
+    
   },
   "engines": {
     "node": ">=8.9",
