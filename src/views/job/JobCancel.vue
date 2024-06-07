@@ -14,13 +14,14 @@ export default {
 
   props: {
     job: { type: String },
+    project: { type: String },
   },
 
   components: {},
 
   data() {
     return {
-      project: '',
+      // project: '',
     };
   },
 
@@ -35,6 +36,7 @@ export default {
 
       if (res.code == 0) {
         this.$message.success('取消成功');
+        this.$emit('success');
       } else {
         this.$message.error(res.msg);
       }
@@ -42,7 +44,7 @@ export default {
   },
 
   created() {
-    this.project = this.$route.params.project;
+    // this.project = this.$route.params.project;
   },
 };
 </script>

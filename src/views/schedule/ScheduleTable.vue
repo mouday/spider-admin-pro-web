@@ -26,7 +26,7 @@
       </el-table-column>
 
       <el-table-column
-        label="Spider"
+        label="Spider"
         header-align="center"
         align="left"
         prop="spider"

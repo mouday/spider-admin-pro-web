@@ -4,31 +4,29 @@
     title="配置信息"
   >
     <div class="home-config">
-      <p>
+      <!-- <p>
         <i class="icon" style="background-color:#36cbcb;"></i>
         <span>Spider Admin Version</span>
         <span style="margin-left:20px;">{{spider_admin.version || '-'}}</span>
-      </p>
+      </p> -->
 
       <p>
         <i class="icon"></i>
         <span>Scrapyd</span>
-        <span style="margin-left:20px;">{{scrapyd.url}}</span>
+        <span style="margin-left: 20px">{{ scrapyd.url }}</span>
 
         <template>
-          <span style="margin-left:20px;">
-            <mo-status :value="scrapyd.status"/>
+          <span style="margin-left: 20px">
+            <mo-status :value="scrapyd.status" />
           </span>
         </template>
-
       </p>
     </div>
   </HomeCard>
-
 </template>
 
 <script>
-import HomeCard from './card.vue';
+import HomeCard from './card.vue'
 export default {
   name: '',
 
@@ -42,23 +40,23 @@ export default {
     return {
       scrapyd: {},
       spider_admin: {},
-    };
+    }
   },
 
   computed: {},
 
   methods: {
     async getData() {
-      const res = await this.$Http.systemSystemConfig();
-      this.scrapyd = res.data.scrapyd;
-      this.spider_admin = res.data.spider_admin;
+      const res = await this.$Http.systemSystemConfig()
+      this.scrapyd = res.data.scrapyd
+      this.spider_admin = res.data.spider_admin
     },
   },
 
   created() {
-    this.getData();
+    this.getData()
   },
-};
+}
 </script>
 
 <style lang="scss" scoped>

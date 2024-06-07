@@ -44,6 +44,7 @@ export default {
       const res = await this.$Http.scrapydListProjects();
 
       this.list = res.data;
+      this.$emit('on-init', res.data)
     },
   },
 

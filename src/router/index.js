@@ -69,14 +69,14 @@ export const constantRoutes = [
         path: "list",
         name: "project-list",
         component: () => import("@/views/project/projectIndex"),
-        meta: { title: "项目列表", icon: "project" }
+        meta: { title: "项目列表", icon: "project" }
       },
 
       {
         path: "version/:project",
         name: "project-version",
         component: () => import("@/views/version/VersionIndex"),
-        meta: { title: "版本列表", icon: "table" },
+        meta: { title: "版本列表", icon: "table" },
         hidden: true
       },
     ]
@@ -93,7 +93,7 @@ export const constantRoutes = [
         path: "list",
         name: "spider-list",
         component: () => import("@/views/spider/SpiderIndex"),
-        meta: { title: "Spider", icon: "table" },
+        meta: { title: "Spider", icon: "table" },
       }
     ]
   },
@@ -133,13 +133,13 @@ export const constantRoutes = [
     component: Layout,
     redirect: "/job/list",
     name: "job",
-    meta: { title: "任务列表", icon: "list" },
+    meta: { title: "任务列表", icon: "list" },
     children: [
       {
         path: "list",
         name: "job-list",
         component: () => import("@/views/job/JobIndex"),
-        meta: { title: "任务列表", icon: "list" },
+        meta: { title: "任务列表", icon: "list" },
       }
     ]
   },
@@ -170,27 +170,27 @@ export const constantRoutes = [
         path: "list",
         name: "logs-list",
         component: () => import("@/views/log/LogIndex"),
-        meta: { title: "运行日志", icon: "log" }
+        meta: { title: "运行日志", icon: "log" }
       },
       {
         path: ":project",
         name: "logs-project",
         component: () => import("@/views/log/LogProject"),
-        meta: { title: "项目日志", icon: "table" },
+        meta: { title: "项目日志", icon: "table" },
         hidden: true
       },
       {
         path: ":project/:spider",
         name: "logs-project-spider",
         component: () => import("@/views/log/LogSpider"),
-        meta: { title: "Spider日志", icon: "table" },
+        meta: { title: "Spider日志", icon: "table" },
         hidden: true
       },
       {
         path: ":project/:spider/:job",
         name: "logs-project-spider-job",
         component: () => import("@/views/log/LogJob"),
-        meta: { title: "任务日志", icon: "table" },
+        meta: { title: "任务日志", icon: "table" },
         hidden: true
       }
     ]
@@ -207,7 +207,7 @@ export const constantRoutes = [
         path: "login-list",
         name: "system-login-list",
         component: () => import('@/views/system/SystemIndex'),
-        meta: { title: "登录日志", icon: "login-log" }
+        meta: { title: "登录日志", icon: "login-log" }
       },
     ]
   },

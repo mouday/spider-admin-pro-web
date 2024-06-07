@@ -7,21 +7,23 @@
       @status-change="handleStatusChange"
       @project-change="handleProjcetChange"
       @success="getData"
+      @on-init="handleSpiderToolInit"
     />
 
-    <div style="height:20px"></div>
+    <div style="height: 20px"></div>
 
     <JobTable
       v-loading="listLoading"
       :data="list"
       :project="project"
+      @success="getData"
     />
   </div>
 </template>
 
 <script>
-import JobTable from './JobTable.vue';
-import JobTool from './JobTool.vue';
+import JobTable from './JobTable.vue'
+import JobTool from './JobTool.vue'
 
 export default {
   name: '',
@@ -43,64 +45,71 @@ export default {
         pending: 0,
         running: 0,
       },
-    };
+    }
   },
 
   computed: {},
 
   methods: {
     async getData() {
-      this.listLoading = true;
+      this.listLoading = true
 
       const res = await this.$Http.scrapydlistJobsMerge({
         project: this.project,
         status: this.status,
-      });
+      })
 
       if (res.code == 0) {
-        this.list = res.data.list;
+        this.list = res.data.list
 
-        this.statusInfo.total = res.data.total;
-        this.statusInfo.pending = res.data.pending;
-        this.statusInfo.running = res.data.running;
-        this.statusInfo.finished = res.data.finished;
+        this.statusInfo.total = res.data.total
+        this.statusInfo.pending = res.data.pending
+        this.statusInfo.running = res.data.running
+        this.statusInfo.finished = res.data.finished
       } else {
-        this.$message.error(res.msg);
+        this.$message.error(res.msg)
       }
 
-      this.listLoading = false;
+      this.listLoading = false
     },
 
     handleStatusChange() {
-      this.getData();
+      this.getData()
     },
 
     handleProjcetChange(val) {
       if (val) {
-        this.project = val;
-        localStorage.setItem('project', val);
-        this.getData();
+        this.project = val
+        localStorage.setItem('project', val)
+        this.getData()
       } else {
-        this.$message.error('请选择项目');
+        // this.$message.error('请选择项目')
+      }
+    },
+
+    handleSpiderToolInit(data) {
+      if (!this.project) {
+        this.project = localStorage.getItem('project')
+      }
+
+      if (!this.project) {
+        if (data && data.length > 0) this.project = data[0].project
+      }
+
+      if (this.project) {
+        this.getData()
       }
     },
   },
 
   created() {
-    let project = this.$route.query.project;
+    this.project = this.$route.query.project
 
     if (this.$route.query.status) {
-      this.status = this.$route.query.status;
+      this.status = this.$route.query.status
     }
-
-    if (!project) {
-      project = localStorage.getItem('project');
-    }
-
-    this.handleProjcetChange(project);
   },
-};
+}
 </script>
 
-<style lang="scss" scoped>
-</style>
+<style lang="scss" scoped></style>

@@ -14,7 +14,7 @@
     </el-table-column>
 
     <el-table-column
-      label="Spider"
+      label="Spider"
       align="center"
     >
       <template slot-scope="scope">
@@ -93,7 +93,9 @@
       <template slot-scope="scope">
         <JobCancel
           :job="scope.row.id"
+          :project="project"
           :disabled="scope.row.status=='finished'"
+          @success="$emit('success')"
         />
       </template>
     </el-table-column>
@@ -115,7 +117,7 @@ export default {
 
   data() {
     return {
-      
+
     };
   },
 
@@ -126,7 +128,7 @@ export default {
   },
 
   created() {
-    
+
     this.getData();
   },
 };

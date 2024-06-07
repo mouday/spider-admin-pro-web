@@ -4,7 +4,7 @@
     v-bind="$attrs"
     v-on="$listeners"
     :fetch-suggestions="querySearch"
-    placeholder="搜索Spider名"
+    placeholder="搜索Spider名"
     clearable
     @select="handleSelect"
   >
@@ -81,6 +81,7 @@ export default {
         project: this.project,
       });
       this.list = res.data;
+      this.$emit('on-init', res.data)
     },
   },
 
