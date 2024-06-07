@@ -122,19 +122,19 @@ export default {
   width: 120px;
 }
 
-/deep/ .el-radio__inner {
+::v-deep .el-radio__inner {
   width: 12px;
   height: 12px;
 }
 
-/deep/ .el-radio__label {
+::v-deep .el-radio__label {
   font-size: 12px;
 }
 
-/deep/ .el-radio {
+::v-deep .el-radio {
   margin-right: 20px;
 }
-/deep/ .el-select {
+::v-deep .el-select {
   margin-right: 5px;
 }
 </style>

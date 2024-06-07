@@ -118,22 +118,22 @@ export default {
   height: 40px;
 }
 
-/deep/ .el-upload--picture-card {
+::v-deep .el-upload--picture-card {
   @include el-picture-card;
   border-radius: 0;
   line-height: 48px;
 }
 
-/deep/ .el-upload-list--picture-card .el-upload-list__item {
+::v-deep .el-upload-list--picture-card .el-upload-list__item {
   @include el-picture-card;
   border: 1px solid #eeeeee;
 }
 
-/deep/ .el-upload-list--picture-card .el-upload-list__item-thumbnail {
+::v-deep .el-upload-list--picture-card .el-upload-list__item-thumbnail {
   object-fit: contain;
 }
 
-// /deep/.el-upload-list__item.is-ready {
+// ::v-deep.el-upload-list__item.is-ready {
 //   display: none;
 // }
 </style>

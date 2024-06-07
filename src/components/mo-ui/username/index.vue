@@ -22,7 +22,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-/deep/ .mo-image {
+::v-deep .mo-image {
   border-radius: 100%;
 }
 </style>
