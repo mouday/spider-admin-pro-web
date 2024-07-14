@@ -8,9 +8,9 @@
       slot="reference"
       v-bind="$attrs"
       size="mini"
-      icon="el-icon-delete"
-       type="text"
+      type="text"
       class="color--danger"
+      icon="el-icon-delete"
     >删除</el-button>
   </el-popconfirm>
 
@@ -21,8 +21,7 @@ export default {
   name: '',
 
   props: {
-    project: { type: String },
-    scrapydServerId: { type: String | Number, default: null },
+    row: { type: Object },
   },
 
   components: {},
@@ -35,16 +34,13 @@ export default {
 
   methods: {
     async handleDelete() {
-      const res = await this.$Http.scrapydDeleteProject({
-        project: this.project,
-        scrapydServerId: this.scrapydServerId,
+      const res = await this.$Http.deleteScrapydServer({
+        scrapyd_server_id: this.row.id,
       });
 
-      if (res.code == 0) {
+      if (res.ok) {
         this.$message.success('删除成功');
         this.$emit('success');
-      } else {
-        this.$message.error(res.msg);
       }
     },
   },

@@ -1,5 +1,6 @@
 <template>
   <el-table
+    size="middle"
     v-bind="$attrs"
     v-on="$listeners"
     border

@@ -3,6 +3,7 @@
     <JobTool
       :statusInfo="statusInfo"
       :status.sync="status"
+      :scrapydServerId.sync="scrapydServerId"
       :project.sync="project"
       @status-change="handleStatusChange"
       @project-change="handleProjcetChange"
@@ -38,7 +39,7 @@ export default {
       project: '',
       list: [],
       listLoading: true,
-
+      scrapydServerId: '',
       statusInfo: {
         total: 0,
         finished: 0,
@@ -52,11 +53,18 @@ export default {
 
   methods: {
     async getData() {
+       if (this.scrapydServerId && this.project) {
+        // pass
+      } else {
+        return
+      }
+      
       this.listLoading = true
 
       const res = await this.$Http.scrapydlistJobsMerge({
         project: this.project,
         status: this.status,
+        scrapydServerId: this.scrapydServerId,
       })
 
       if (res.code == 0) {
@@ -88,12 +96,8 @@ export default {
     },
 
     handleSpiderToolInit(data) {
-      if (!this.project) {
-        this.project = localStorage.getItem('project')
-      }
-
-      if (!this.project) {
-        if (data && data.length > 0) this.project = data[0].project
+      if (data && data.length > 0) {
+        this.project = data[0].project
       }
 
       if (this.project) {
@@ -103,6 +107,7 @@ export default {
   },
 
   created() {
+    this.scrapydServerId = this.$route.query.scrapydServerId
     this.project = this.$route.query.project
 
     if (this.$route.query.status) {

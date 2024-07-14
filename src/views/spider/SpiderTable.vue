@@ -73,6 +73,7 @@
         <ScheduleAdd
           :spider="scope.row.spider"
           :project="project"
+          :scrapydServerId="scrapydServerId"
         />
       </template>
     </el-table-column>
@@ -86,6 +87,7 @@
         <SpiderSchedule
           :spider="scope.row.spider"
           :project="project"
+          :scrapydServerId="scrapydServerId"
         />
       </template>
     </el-table-column>
@@ -102,6 +104,7 @@ export default {
 
   props: {
     project: { type: String, default: '' },
+    scrapydServerId: { type: String, default: '' },
   },
 
   components: { SpiderSchedule, ScheduleAdd },

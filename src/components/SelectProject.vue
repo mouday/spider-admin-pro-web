@@ -1,14 +1,16 @@
 <template>
-  <el-autocomplete
+  <el-select
     v-model="_value"
-    :fetch-suggestions="querySearch"
-    @select="handleSelect"
+    placeholder="选择项目"
     v-bind="$attrs"
+    v-on="$listeners"
   >
-    <template slot-scope="{ item }">
-      <span>{{ item.project }}</span>
-    </template>
-  </el-autocomplete>
+    <el-option
+      v-for="item in list"
+      :label="item.project"
+      :value="item.project"
+    ></el-option>
+  </el-select>
 </template>
 
 <script>
@@ -16,8 +18,8 @@ export default {
   name: '',
 
   props: {
+    scrapydServerId: { type: String },
     value: { type: String },
-    scrapydServerId: { type: String | Number, default: null },
   },
 
   components: {},
@@ -40,34 +42,21 @@ export default {
   },
 
   methods: {
-    querySearch(queryString, cb) {
-      const results = queryString ? this.filterItem(queryString) : this.list
-
-      cb(results)
-    },
-
-    filterItem(queryString) {
-      return this.list.filter((item) => {
-        return (
-          item.project.toLowerCase().indexOf(queryString.toLowerCase()) == 0
-        )
-      })
-    },
-
-    handleSelect(item) {
-      this._value = item.project
+    resetData() {
+      this.getData()
     },
 
     async getData() {
       if (!this.scrapydServerId) {
         return
       }
-      
+
       const res = await this.$Http.scrapydListProjects({
         scrapydServerId: this.scrapydServerId,
       })
 
       this.list = res.data
+      this.$emit('on-init', res.data)
     },
   },
 

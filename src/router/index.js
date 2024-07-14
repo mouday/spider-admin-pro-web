@@ -57,6 +57,24 @@ export const constantRoutes = [
       }
     ]
   },
+  
+  {
+    path: "/scrapyd-server",
+    component: Layout,
+    redirect: "/scrapyd-server/list",
+    name: "project",
+    meta: { title: "Scrapyd", icon: "project" },
+    children: [
+      {
+        path: "/scrapyd-server/list",
+        name: "scrapyd-server-list",
+        component: () => import("../views/scrapyd-server/index.vue"),
+        meta: { title: "Scrapyd", icon: "project" }
+      },
+
+     
+    ]
+  },
 
   {
     path: "/project",
@@ -73,9 +91,9 @@ export const constantRoutes = [
       },
 
       {
-        path: "version/:project",
+        path: "version-list",
         name: "project-version",
-        component: () => import("@/views/version/VersionIndex"),
+        component: () => import("../views/version/VersionIndex.vue"),
         meta: { title: "版本列表", icon: "table" },
         hidden: true
       },

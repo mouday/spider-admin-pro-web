@@ -43,7 +43,7 @@
 // import ScheduleAdd from './ScheduleAdd.vue';
 // import ScheduleState from './ScheduleState.vue';
 // import ScheduleRemoveAllJob from './ScheduleRemoveAllJob.vue';
-import ProjectSelect from '@/views/project/ProjectSelect.vue';
+import ProjectSelect from '@/components/SelectProject.vue'
 import SpiderSearch from '@/views/spider/SpiderSearch.vue';
 import StatsRemove from './StatsRemove.vue';
 import AutoRefresh from '@/views/commom/AutoRefresh.vue';

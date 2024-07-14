@@ -10,7 +10,18 @@
         width="60"
       >
         <template slot-scope="scope">
-          {{ scope.$index + 1}}
+          {{ scope.$index + 1 }}
+        </template>
+      </el-table-column>
+
+      <el-table-column
+        label="服务名称"
+        header-align="center"
+        align="left"
+        width="150px"
+      >
+        <template slot-scope="scope">
+          {{ scope.row.kwargs.project }}
         </template>
       </el-table-column>
 
@@ -21,7 +32,7 @@
         width="150px"
       >
         <template slot-scope="scope">
-          {{scope.row.kwargs.project}}
+          {{ scope.row.kwargs.project }}
         </template>
       </el-table-column>
 
@@ -30,10 +41,11 @@
         header-align="center"
         align="left"
         prop="spider"
+        min-width="100px"
         sortable
       >
         <template slot-scope="scope">
-          {{scope.row.kwargs.spider}}
+          {{ scope.row.kwargs.spider }}
         </template>
       </el-table-column>
 
@@ -43,7 +55,17 @@
         width="120px"
       >
         <template slot-scope="scope">
-          {{scope.row.kwargs.cron}}
+          {{ scope.row.kwargs.cron }}
+        </template>
+      </el-table-column>
+
+      <el-table-column
+        label="调度方式"
+        align="center"
+        width="120px"
+      >
+        <template slot-scope="scope">
+          {{ scope.row.kwargs.cron }}
         </template>
       </el-table-column>
 
@@ -53,50 +75,55 @@
         width="170px"
       >
         <template slot-scope="scope">
-          {{scope.row.next_run_time || '-'}}
+          {{ scope.row.next_run_time || '-' }}
         </template>
       </el-table-column>
 
       <el-table-column
-        label="调度日志"
+        label="日志"
         align="center"
-        width="80px"
+        width="160px"
       >
         <template slot-scope="scope">
-
+          <!-- 调度日志 -->
           <router-link
-            :to="{'name': 'schedule-log-list', query: {project: scope.row.kwargs.project, spider: scope.row.kwargs.spider, job :scope.row.id}}"
+            :to="{
+              name: 'schedule-log-list',
+              query: {
+                project: scope.row.kwargs.project,
+                spider: scope.row.kwargs.spider,
+                job: scope.row.id,
+              },
+            }"
             target="_blank"
-          ><i class="el-icon-document"></i> 日志</router-link>
+            ><i class="el-icon-document"></i> 调度</router-link
+          >
 
-        </template>
-      </el-table-column>
-
-      <el-table-column
-        label="运行统计"
-        align="center"
-        width="80px"
-      >
-        <template slot-scope="scope">
+          <!-- 运行日志 -->
           <router-link
-            :to="{'name': 'stats-list', query: {project: scope.row.kwargs.project, spider: scope.row.kwargs.spider}}"
+            :to="{
+              name: 'logs-project-spider',
+              params: {
+                project: scope.row.kwargs.project,
+                spider: scope.row.kwargs.spider,
+              },
+            }"
             target="_blank"
-          ><i class="el-icon-document"></i> 日志</router-link>
+            ><i class="el-icon-document"></i> 运行</router-link
+          >
 
-        </template>
-      </el-table-column>
-
-      <el-table-column
-        label="运行日志"
-        align="center"
-        width="80px"
-      >
-        <template slot-scope="scope">
+          <!-- 运行统计 -->
           <router-link
-            :to="{'name': 'logs-project-spider', params: {project: scope.row.kwargs.project, spider: scope.row.kwargs.spider}}"
+            :to="{
+              name: 'stats-list',
+              query: {
+                project: scope.row.kwargs.project,
+                spider: scope.row.kwargs.spider,
+              },
+            }"
             target="_blank"
-          ><i class="el-icon-document"></i> 日志</router-link>
-
+            ><i class="el-icon-document"></i> 统计</router-link
+          >
         </template>
       </el-table-column>
 
@@ -124,8 +151,8 @@
             :spider="scope.row.kwargs.spider"
           />
         </template>
-
       </el-table-column>
+
       <el-table-column
         label="修改"
         align="center"
@@ -137,7 +164,6 @@
             @success="$emit('success')"
           />
         </template>
-
       </el-table-column>
 
       <el-table-column
@@ -152,17 +178,16 @@
           />
         </template>
       </el-table-column>
-
     </mo-table>
   </div>
 </template>
 
 <script>
 // import ProjectDelete from "./ProjectDelete.vue";
-import ScheduleJobStatus from './ScheduleJobStatus.vue';
-import SpiderSchedule from '@/views/spider/SpiderSchedule.vue';
-import ScheduleRemoveJob from './ScheduleRemoveJob.vue';
-import ScheduleAdd from './ScheduleAdd.vue';
+import ScheduleJobStatus from './ScheduleJobStatus.vue'
+import SpiderSchedule from '@/views/spider/SpiderSchedule.vue'
+import ScheduleRemoveJob from './ScheduleRemoveJob.vue'
+import ScheduleAdd from './ScheduleAdd.vue'
 
 export default {
   name: '',
@@ -177,7 +202,7 @@ export default {
   },
 
   data() {
-    return {};
+    return {}
   },
 
   computed: {},
@@ -187,10 +212,9 @@ export default {
   },
 
   created() {
-    this.getData();
+    this.getData()
   },
-};
+}
 </script>
 
-<style lang="scss" scoped>
-</style>
+<style lang="scss" scoped></style>

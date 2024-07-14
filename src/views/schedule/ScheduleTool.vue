@@ -1,6 +1,6 @@
 <template>
   <div style="display: flex;">
-    <ScheduleAdd @success="handleSuccess" />
+    <ScheduleAdd @on-success="handleSuccess" />
 
     <ScheduleRemoveAllJob
       style="margin-left:20px"

@@ -56,4 +56,12 @@ module.exports = {
 
   // 系统管理
   actionHistoryLoginHistoryList: '/actionHistory/loginHistoryList',
+
+  // scrapyd Server
+  addScrapydServer: '/scrapydServer/addScrapydServer',
+  updateScrapydServer: '/scrapydServer/updateScrapydServer',
+  updateScrapydServerStatus: '/scrapydServer/updateScrapydServerStatus',
+  deleteScrapydServer: '/scrapydServer/deleteScrapydServer',
+  getScrapydServer: '/scrapydServer/getScrapydServer',
+  getScrapydServerPage: '/scrapydServer/getScrapydServerPage',
 };

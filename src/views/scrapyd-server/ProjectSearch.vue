@@ -17,7 +17,6 @@ export default {
 
   props: {
     value: { type: String },
-    scrapydServerId: { type: String | Number, default: null },
   },
 
   components: {},
@@ -25,56 +24,50 @@ export default {
   data() {
     return {
       list: [],
-    }
+    };
   },
 
   computed: {
     _value: {
       get() {
-        return this.value
+        return this.value;
       },
       set(val) {
-        this.$emit('update:value', val)
+        this.$emit('update:value', val);
       },
     },
   },
 
   methods: {
     querySearch(queryString, cb) {
-      const results = queryString ? this.filterItem(queryString) : this.list
+      const results = queryString ? this.filterItem(queryString) : this.list;
 
-      cb(results)
+      cb(results);
     },
 
     filterItem(queryString) {
       return this.list.filter((item) => {
         return (
           item.project.toLowerCase().indexOf(queryString.toLowerCase()) == 0
-        )
-      })
+        );
+      });
     },
 
     handleSelect(item) {
-      this._value = item.project
+      this._value = item.project;
     },
 
     async getData() {
-      if (!this.scrapydServerId) {
-        return
-      }
-      
-      const res = await this.$Http.scrapydListProjects({
-        scrapydServerId: this.scrapydServerId,
-      })
-
-      this.list = res.data
+      const res = await this.$Http.scrapydListProjects();
+      this.list = res.data;
     },
   },
 
   created() {
-    this.getData()
+    this.getData();
   },
-}
+};
 </script>
 
-<style lang="scss" scoped></style>
+<style lang="scss" scoped>
+</style>

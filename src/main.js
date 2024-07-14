@@ -31,7 +31,7 @@ if (process.env.NODE_ENV === 'production') {
 }
 
 // set ElementUI lang to EN
-Vue.use(ElementUI, { locale })
+Vue.use(ElementUI, { locale, size: 'small' })
 Vue.use(MoUI)
 
 Vue.prototype.$Http = Http;

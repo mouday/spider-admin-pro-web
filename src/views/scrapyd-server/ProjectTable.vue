@@ -15,118 +15,99 @@
       </el-table-column>
 
       <el-table-column
-        label="项目名"
-        header-align="center"
-        align="left"
+        label="服务名称"
+        align="center"
+        prop="server_name"
       >
         <template slot-scope="scope">
-          {{ scope.row.project }}
+          {{ scope.row.server_name }}
         </template>
       </el-table-column>
 
       <el-table-column
-        label="查看版本"
+        label="服务地址"
+        align="center"
+      >
+        <template slot-scope="scope">
+          {{ scope.row.server_url }}
+        </template>
+      </el-table-column>
+
+      <el-table-column
+        label="用户名"
+        align="center"
+        width="100px"
+      >
+        <template slot-scope="scope">
+          {{ scope.row.username || '-' }}
+        </template>
+      </el-table-column>
+
+      <el-table-column
+        label="密码"
+        align="center"
+        width="100px"
+      >
+        <template slot-scope="scope">
+          <span v-if="scope.row.password">***</span>
+          <span v-else>-</span>
+        </template>
+      </el-table-column>
+
+      <el-table-column
+        label="查看项目"
         align="center"
         width="100px"
       >
         <template slot-scope="scope">
           <router-link
             :to="{
-              name: 'project-version',
-              query: {
-                project: scope.row.project,
-                scrapydServerId: scrapydServerId,
-              },
+              path: '/project/list',
+              query: { scrapydServerId: scope.row.id },
             }"
           >
-            <i class="el-icon-folder-opened"></i> 版本
+            <i class="el-icon-tickets"></i> 项目
           </router-link>
         </template>
       </el-table-column>
 
       <el-table-column
-        label="查看Spider"
+        label="启用/禁用"
         align="center"
         width="100px"
       >
         <template slot-scope="scope">
-          <router-link
-            :to="{
-              name: 'spider-list',
-              query: {
-                project: scope.row.project,
-                scrapydServerId: scrapydServerId,
-              },
-            }"
-          >
-            <i class="el-icon-tickets"></i> Spider
-          </router-link>
+          <mo-switch
+            :active-value="1"
+            :inactive-value="0"
+            v-model="scope.row.status"
+            @change="handleStatusChange(scope.row, $event)"
+          ></mo-switch>
         </template>
       </el-table-column>
 
       <el-table-column
-        label="查看任务"
+        label="编辑"
         align="center"
-        width="100px"
-      >
-        <template slot-scope="scope">
-          <router-link
-            :to="{
-              name: 'job-list',
-              query: {
-                project: scope.row.project,
-                scrapydServerId: scrapydServerId,
-              },
-            }"
-          >
-            <i class="el-icon-date"></i> 任务
-          </router-link>
-        </template>
-      </el-table-column>
-
-      <el-table-column
-        label="查看日志"
-        align="center"
-        width="100px"
-      >
-        <template slot-scope="scope">
-          <router-link
-            :to="{
-              name: 'logs-project',
-              params: {
-                project: scope.row.project,
-                scrapydServerId: scrapydServerId,
-              },
-            }"
-          >
-            <i class="el-icon-document"></i> 日志
-          </router-link>
-        </template>
-      </el-table-column>
-
-      <el-table-column
-        label="更新版本"
-        align="center"
-        width="100px"
+        width="80px"
       >
         <template slot-scope="scope">
           <ProjectAdd
-            :scrapydServerId="scrapydServerId"
-            :project="scope.row.project"
             type="edit"
+            :row="scope.row"
+            @success="$emit('success')"
           />
         </template>
       </el-table-column>
 
       <el-table-column
-        label="删除项目"
+        label="删除"
         align="center"
-        width="100px"
+        width="80px"
       >
         <template slot-scope="scope">
           <ProjectDelete
-            :scrapydServerId="scrapydServerId"
-            :project="scope.row.project"
+            :row="scope.row"
             @success="$emit('success')"
           />
         </template>
@@ -142,7 +123,7 @@ import ProjectAdd from './ProjectAdd.vue'
 export default {
   name: '',
 
-  props: { scrapydServerId: { type: String | Number, default: null } },
+  props: [],
 
   components: { ProjectDelete, ProjectAdd },
 
@@ -154,6 +135,22 @@ export default {
 
   methods: {
     async getData() {},
+
+    async handleStatusChange(row, value) {
+      let params = {
+        scrapyd_server_id: row.id,
+        status: value,
+      }
+
+      const res = await this.$Http.updateScrapydServerStatus(params)
+
+      if (res.code == 0) {
+        this.$message.success('更新成功')
+        // this.$emit('success')
+      } else {
+        this.$message.error(res.msg)
+      }
+    },
   },
 
   created() {

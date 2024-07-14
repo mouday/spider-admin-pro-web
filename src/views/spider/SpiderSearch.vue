@@ -21,6 +21,7 @@ export default {
   props: {
     value: { type: String },
     project: { type: String },
+    scrapydServerId: { type: String },
   },
 
   components: {},
@@ -28,15 +29,15 @@ export default {
   data() {
     return {
       list: [],
-    };
+    }
   },
 
   watch: {
     project: {
       handler: function (val) {
         if (val) {
-          this.getData();
-        } else{
+          this.getData()
+        } else {
           this.list = []
         }
       },
@@ -47,47 +48,57 @@ export default {
   computed: {
     _value: {
       get() {
-        return this.value;
+        return this.value
       },
       set(val) {
-        this.$emit('update:value', val);
+        this.$emit('update:value', val)
       },
     },
   },
 
   methods: {
-    querySearch(queryString, cb) {
-      const results = queryString ? this.filterItem(queryString) : this.list;
+    resetData() {
+      this.list = []
+      this.getData()
+    },
 
-      cb(results);
+    querySearch(queryString, cb) {
+      const results = queryString ? this.filterItem(queryString) : this.list
+
+      cb(results)
     },
 
     filterItem(queryString) {
       return this.list.filter((item) => {
-        return (
-          item.spider.toLowerCase().indexOf(queryString.toLowerCase()) == 0
-        );
-      });
+        return item.spider.toLowerCase().indexOf(queryString.toLowerCase()) == 0
+      })
     },
 
     handleSelect(item) {
-      this._value = item.spider;
+      this._value = item.spider
       this.$emit('change', item.spider)
     },
 
     async getData() {
-      this.list = [];
+      if (this.scrapydServerId && this.project) {
+        // pass
+      } else {
+        return
+      }
+
       const res = await this.$Http.scrapydlistSpiders({
+        scrapydServerId: this.scrapydServerId,
         project: this.project,
-      });
-      this.list = res.data;
+      })
+
+      this.list = res.data
+
       this.$emit('on-init', res.data)
     },
   },
 
   created() {},
-};
+}
 </script>
 
-<style lang="scss" scoped>
-</style>
+<style lang="scss" scoped></style>

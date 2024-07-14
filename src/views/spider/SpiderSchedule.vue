@@ -14,6 +14,7 @@ export default {
   props: {
     spider: { type: String },
     project: { type: String },
+    scrapydServerId: { type: String },
   },
 
   components: {},
@@ -27,6 +28,7 @@ export default {
   methods: {
     async handleSchedule() {
       const res = await this.$Http.scrapydSchedule({
+        scrapydServerId: this.scrapydServerId,
         project: this.project,
         spider: this.spider,
       });

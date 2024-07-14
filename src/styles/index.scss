@@ -45,6 +45,9 @@ a:hover {
   text-decoration: none;
 }
 
+a:hover {
+  color: #409eff;
+}
 div:focus {
   outline: none;
 }
@@ -67,4 +70,28 @@ div:focus {
 
 .mo-link {
   color: #409eff;
+}
+
+.flex {
+  display: flex;
+}
+.items-center {
+  align-items: center;
+}
+
+.ml-sm {
+  margin-left: 10px;
+}
+.ml-md {
+  margin-left: 20px;
+}
+.mt-sm {
+  margin-top: 10px;
+}
+.mt-md {
+  margin-top: 20px;
+}
+.color--danger,
+.color--danger:hover {
+  color: #f56c6c;
 }
