@@ -6,10 +6,22 @@
       size="mini"
       @click="handleDialogVisibleClick"
       icon="el-icon-edit-outline"
+      type="text"
       v-bind="$attrs"
     ></el-button>
 
     <!-- 添加 -->
+    <el-button
+      v-else-if="type=='table-add'"
+      size="mini"
+      type="text"
+      @click="handleDialogVisibleClick"
+      icon="el-icon-document-add"
+      v-bind="$attrs"
+      >添加</el-button
+    >
+
+     <!-- 添加 -->
     <el-button
       v-else
       size="mini"
@@ -50,6 +62,7 @@ export default {
     scrapydServerId: { type: String, default: null },
     project: { type: String, default: null },
     spider: { type: String, default: null },
+    type: { type: String, default: null },
   },
 
   components: {

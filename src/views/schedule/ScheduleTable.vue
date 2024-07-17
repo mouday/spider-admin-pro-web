@@ -15,13 +15,14 @@
       </el-table-column>
 
       <el-table-column
+        v-if="false"
         label="服务名称"
         header-align="center"
         align="left"
         width="150px"
       >
         <template slot-scope="scope">
-          {{ scope.row.kwargs.project }}
+          {{ scope.row.scrapyd_server_label || '-' }}
         </template>
       </el-table-column>
 
@@ -65,7 +66,13 @@
         width="120px"
       >
         <template slot-scope="scope">
-          {{ scope.row.kwargs.cron }}
+          <span
+            :class="{
+              'font-medium':
+                scope.row.kwargs.schedule_type == ScheduleTypeEnum.RANDOM_SERVER,
+            }"
+            >{{ scope.row.schedule_type_label || '-' }}</span
+          >
         </template>
       </el-table-column>
 
@@ -82,7 +89,7 @@
       <el-table-column
         label="日志"
         align="center"
-        width="160px"
+        width="120px"
       >
         <template slot-scope="scope">
           <!-- 调度日志 -->
@@ -92,24 +99,26 @@
               query: {
                 project: scope.row.kwargs.project,
                 spider: scope.row.kwargs.spider,
+                scrapydServerId: scope.row.kwargs.scrapyd_server_id,
                 job: scope.row.id,
               },
             }"
             target="_blank"
-            ><i class="el-icon-document"></i> 调度</router-link
+            >调度</router-link
           >
 
           <!-- 运行日志 -->
           <router-link
             :to="{
               name: 'logs-project-spider',
-              params: {
+              query: {
                 project: scope.row.kwargs.project,
                 spider: scope.row.kwargs.spider,
+                scrapydServerId: scope.row.kwargs.scrapyd_server_id,
               },
             }"
             target="_blank"
-            ><i class="el-icon-document"></i> 运行</router-link
+            >运行</router-link
           >
 
           <!-- 运行统计 -->
@@ -119,10 +128,11 @@
               query: {
                 project: scope.row.kwargs.project,
                 spider: scope.row.kwargs.spider,
+                scrapydServerId: scope.row.kwargs.scrapyd_server_id,
               },
             }"
             target="_blank"
-            ><i class="el-icon-document"></i> 统计</router-link
+            >统计</router-link
           >
         </template>
       </el-table-column>
@@ -141,38 +151,25 @@
       </el-table-column>
 
       <el-table-column
-        label="执行"
+        label="操作"
         align="center"
-        width="65"
+        width="100"
       >
         <template slot-scope="scope">
           <SpiderSchedule
             :project="scope.row.kwargs.project"
             :spider="scope.row.kwargs.spider"
+            :scrapydServerId="scope.row.kwargs.scrapyd_server_id"
           />
-        </template>
-      </el-table-column>
 
-      <el-table-column
-        label="修改"
-        align="center"
-        width="65"
-      >
-        <template slot-scope="scope">
           <ScheduleAdd
+            class="ml-sm"
             :job_id="scope.row.id"
-            @success="$emit('success')"
+            @on-success="$emit('success')"
           />
-        </template>
-      </el-table-column>
 
-      <el-table-column
-        label="移除"
-        align="center"
-        width="65"
-      >
-        <template slot-scope="scope">
           <ScheduleRemoveJob
+            class="ml-sm"
             :job_id="scope.row.id"
             @success="$emit('success')"
           />
@@ -188,6 +185,10 @@ import ScheduleJobStatus from './ScheduleJobStatus.vue'
 import SpiderSchedule from '@/views/spider/SpiderSchedule.vue'
 import ScheduleRemoveJob from './ScheduleRemoveJob.vue'
 import ScheduleAdd from './ScheduleAdd.vue'
+import {
+  ScheduleTypeOptions,
+  ScheduleTypeEnum,
+} from '@/enums/schedule-type-enum.js'
 
 export default {
   name: '',
@@ -202,7 +203,9 @@ export default {
   },
 
   data() {
-    return {}
+    return {
+      ScheduleTypeEnum,
+    }
   },
 
   computed: {},

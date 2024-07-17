@@ -1,7 +1,15 @@
 <template>
   <div class="">
+    <SelectScrapydServer
+      :value.sync="_scrapydServerId"
+      @on-init="handleSelectScrapydServerInit"
+      @change="handleScrapydServerChange"
+    ></SelectScrapydServer>
+
     <ProjectSelect
-      size="small"
+      class="ml-sm"
+      :key="scrapydServerId"
+      v-if="scrapydServerId"
       :value.sync="_project"
       :clearable="true"
       :filterable="true"
@@ -9,7 +17,7 @@
     />
 
     <SpiderSearch
-      style="margin-left: 20px"
+      class="ml-sm"
       size="small"
       :project="_project"
       :value.sync="_spider"
@@ -31,7 +39,7 @@
       
       <ScheduleRemoveAllJob style="margin-left:20px" @success="$emit('success')"/> -->
     <AutoRefresh
-      style="margin-left: 20px"
+      class="ml-sm"
       :frequency="5000"
       @refresh="$emit('success')"
     />
@@ -42,11 +50,13 @@
       placement="top-start"
     >
       <div slot="content">
-        使用 <a
+        使用
+        <a
           href="https://github.com/mouday/scrapy-util"
           target="_blank"
           >scrapy-util</a
-        > 收集运行日志
+        >
+        收集运行日志
       </div>
       <i
         class="el-icon-warning-outline"
@@ -64,6 +74,7 @@ import ProjectSelect from '@/components/SelectProject.vue'
 import SpiderSearch from '@/views/spider/SpiderSearch.vue'
 import StatsRemove from './StatsRemove.vue'
 import AutoRefresh from '@/views/commom/AutoRefresh.vue'
+import SelectScrapydServer from '@/components/SelectScrapydServer.vue'
 
 export default {
   name: '',
@@ -73,6 +84,7 @@ export default {
     project: { type: String, default: '' },
     spider: { type: String, default: '' },
     schedule_job_id: { type: String, default: '' },
+    scrapydServerId: { type: String, default: '' },
 
     // {total、success、error}
     statusInfo: {
@@ -84,6 +96,7 @@ export default {
   },
 
   components: {
+    SelectScrapydServer,
     ProjectSelect,
     SpiderSearch,
     StatsRemove,
@@ -99,6 +112,14 @@ export default {
   },
 
   computed: {
+    _scrapydServerId: {
+      get() {
+        return this.scrapydServerId
+      },
+      set(val) {
+        this.$emit('update:scrapydServerId', val)
+      },
+    },
     _status: {
       get() {
         return this.status
@@ -134,6 +155,28 @@ export default {
 
     handleSpiderChange(val) {
       this.$emit('spider-change', val)
+    },
+
+    handleSelectScrapydServerInit(data) {
+      // if (!this.scrapydServerId) {
+      //   if (data.list && data.list.length > 0) {
+      //     this.scrapydServerId = data.list[0].value
+      //   }
+      // }
+      // this.hasScrapydServerIdInit = true
+    },
+
+    handleScrapydServerChange(val) {
+      console.log(val)
+
+      this._scrapydServerId = val
+      this._project = null
+
+      // this.$nextTick(() => {
+      //   if (this.$refs.ProjectSelect) {
+      //     this.$refs.ProjectSelect.resetData()
+      //   }
+      // })
     },
   },
 

@@ -93,7 +93,7 @@
           <router-link
             :to="{
               name: 'logs-project',
-              params: {
+              query: {
                 project: scope.row.project,
                 scrapydServerId: scrapydServerId,
               },

@@ -23,6 +23,7 @@ export default {
     project: { type: String, default: '' },
     spider: { type: String, default: '' },
     schedule_job_id: { type: String, default: '' },
+    scrapydServerId: { type: String, default: '' },
   },
 
   components: {},
@@ -42,6 +43,7 @@ export default {
         project: this.project,
         spider: this.spider,
         schedule_job_id: this.schedule_job_id,
+        scrapydServerId: this.scrapydServerId,
       });
 
       if (res.code == 0) {

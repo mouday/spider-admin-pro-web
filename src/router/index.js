@@ -69,7 +69,7 @@ export const constantRoutes = [
         path: "/scrapyd-server/list",
         name: "scrapyd-server-list",
         component: () => import("../views/scrapyd-server/index.vue"),
-        meta: { title: "Scrapyd", icon: "project" }
+        meta: { title: "Scrapyd", icon: "tree" }
       },
 
      
@@ -191,23 +191,23 @@ export const constantRoutes = [
         meta: { title: "运行日志", icon: "log" }
       },
       {
-        path: ":project",
+        path: "project",
         name: "logs-project",
         component: () => import("@/views/log/LogProject"),
         meta: { title: "项目日志", icon: "table" },
         hidden: true
       },
       {
-        path: ":project/:spider",
+        path: "spider",
         name: "logs-project-spider",
-        component: () => import("@/views/log/LogSpider"),
+        component: () => import("../views/log/LogSpider.vue"),
         meta: { title: "Spider日志", icon: "table" },
         hidden: true
       },
       {
-        path: ":project/:spider/:job",
+        path: "job",
         name: "logs-project-spider-job",
-        component: () => import("@/views/log/LogJob"),
+        component: () => import("../views/log/LogJob.vue"),
         meta: { title: "任务日志", icon: "table" },
         hidden: true
       }

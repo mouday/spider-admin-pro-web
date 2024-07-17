@@ -11,13 +11,14 @@
       class="log-content"
       v-loading="listLoading"
     >
-      <pre>{{content}}</pre>
+      <pre v-if="content">{{ content }}</pre>
+      <div v-else>暂无数据</div>
     </div>
   </div>
 </template>
 
 <script>
-import AutoRefresh from '@/views/commom/AutoRefresh.vue';
+import AutoRefresh from '@/views/commom/AutoRefresh.vue'
 
 export default {
   name: '',
@@ -30,6 +31,7 @@ export default {
 
   data() {
     return {
+      scrapydServerId: '',
       project: '',
       spider: '',
       job: '',
@@ -37,34 +39,37 @@ export default {
       listLoading: true,
 
       content: '',
-    };
+    }
   },
 
   computed: {},
 
   methods: {
     async getData() {
-      this.listLoading = true;
+      this.listLoading = true
 
       const res = await this.$Http.scrapydJobLog({
+        scrapydServerId: this.scrapydServerId,
         project: this.project,
         spider: this.spider,
         job: this.job,
-      });
+      })
 
-      this.content = res.data;
+      this.content = res.data
 
-      this.listLoading = false;
+      this.listLoading = false
     },
   },
 
   created() {
-    this.project = this.$route.params.project;
-    this.spider = this.$route.params.spider;
-    this.job = this.$route.params.job;
-    this.getData();
+    this.project = this.$route.query.project
+    this.spider = this.$route.query.spider
+    this.job = this.$route.query.job
+    this.scrapydServerId = this.$route.query.scrapydServerId
+
+    this.getData()
   },
-};
+}
 </script>
 
 <style lang="scss" scoped>

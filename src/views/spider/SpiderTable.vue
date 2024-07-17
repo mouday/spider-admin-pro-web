@@ -9,7 +9,7 @@
       width="60"
     >
       <template slot-scope="scope">
-        {{ scope.$index + 1}}
+        {{ scope.$index + 1 }}
       </template>
     </el-table-column>
 
@@ -18,7 +18,7 @@
       align="center"
     >
       <template slot-scope="scope">
-        {{scope.row.spider }}
+        {{ scope.row.spider }}
       </template>
     </el-table-column>
 
@@ -28,12 +28,14 @@
       width="80px"
     >
       <template slot-scope="scope">
-
         <router-link
-          :to="{'name': 'schedule-log-list', query: {project: project, spider: scope.row.spider}}"
+          :to="{
+            name: 'schedule-log-list',
+            query: { project: project, spider: scope.row.spider },
+          }"
           target="_blank"
-        ><i class="el-icon-document"></i> 日志</router-link>
-
+          ><i class="el-icon-document"></i> 日志</router-link
+        >
       </template>
     </el-table-column>
 
@@ -44,10 +46,13 @@
     >
       <template slot-scope="scope">
         <router-link
-          :to="{'name': 'stats-list', query: {project: project, spider: scope.row.spider}}"
+          :to="{
+            name: 'stats-list',
+            query: { project: project, spider: scope.row.spider },
+          }"
           target="_blank"
-        ><i class="el-icon-document"></i> 统计</router-link>
-
+          ><i class="el-icon-document"></i> 统计</router-link
+        >
       </template>
     </el-table-column>
 
@@ -58,9 +63,13 @@
     >
       <template slot-scope="scope">
         <router-link
-          :to="{'name': 'logs-project-spider', params: {project: project, spider: scope.row.spider }}"
+          :to="{
+            name: 'logs-project-spider',
+            params: { project: project, spider: scope.row.spider },
+          }"
           target="_blank"
-        ><i class="el-icon-document"></i> 日志</router-link>
+          ><i class="el-icon-document"></i> 日志</router-link
+        >
       </template>
     </el-table-column>
 
@@ -71,6 +80,7 @@
     >
       <template slot-scope="scope">
         <ScheduleAdd
+          type="table-add"
           :spider="scope.row.spider"
           :project="project"
           :scrapydServerId="scrapydServerId"
@@ -79,9 +89,9 @@
     </el-table-column>
 
     <el-table-column
-      label="运行Spider"
+      label="运行"
       align="center"
-      width="100px"
+      width="60px"
     >
       <template slot-scope="scope">
         <SpiderSchedule
@@ -91,13 +101,12 @@
         />
       </template>
     </el-table-column>
-
   </mo-table>
 </template>
 
 <script>
-import SpiderSchedule from './SpiderSchedule.vue';
-import ScheduleAdd from '@/views/schedule/ScheduleAdd.vue';
+import SpiderSchedule from './SpiderSchedule.vue'
+import ScheduleAdd from '@/views/schedule/ScheduleAdd.vue'
 
 export default {
   name: '',
@@ -110,7 +119,7 @@ export default {
   components: { SpiderSchedule, ScheduleAdd },
 
   data() {
-    return {};
+    return {}
   },
 
   computed: {},
@@ -120,10 +129,9 @@ export default {
   },
 
   created() {
-    this.getData();
+    this.getData()
   },
-};
+}
 </script>
 
-<style lang="scss" scoped>
-</style>
+<style lang="scss" scoped></style>

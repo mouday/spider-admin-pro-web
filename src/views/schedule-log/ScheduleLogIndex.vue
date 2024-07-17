@@ -1,10 +1,10 @@
 <template>
   <div class="app-container">
-
     <ScheduleLogTool
       :status.sync="status"
       :project.sync="project"
       :spider.sync="spider"
+      :scrapydServerId.sync="scrapydServerId"
       :schedule_job_id="schedule_job_id"
       :statusInfo="statusInfo"
       @status-change="handleStatusChange"
@@ -13,7 +13,7 @@
       @success="handleSuccess"
     />
 
-    <div style="height:20px;"></div>
+    <div style="height: 20px"></div>
 
     <ScheduleLogTable
       :data="list"
@@ -30,8 +30,8 @@
 </template>
 
 <script>
-import ScheduleLogTable from './ScheduleLogTable.vue';
-import ScheduleLogTool from './ScheduleLogTool.vue';
+import ScheduleLogTable from './ScheduleLogTable.vue'
+import ScheduleLogTool from './ScheduleLogTool.vue'
 
 export default {
   name: '',
@@ -56,19 +56,20 @@ export default {
       project: '',
       spider: '',
       schedule_job_id: '',
+      scrapydServerId: '',
       statusInfo: {},
-    };
+    }
   },
 
   computed: {
     count() {
-      return this.statusInfo[this.status];
+      return this.statusInfo[this.status]
     },
   },
 
   methods: {
     async getData() {
-      this.listLoading = true;
+      this.listLoading = true
 
       const res = await this.$Http.scheduleScheduleLogs({
         page: this.page,
@@ -77,51 +78,51 @@ export default {
         project: this.project,
         spider: this.spider,
         schedule_job_id: this.schedule_job_id,
-      });
+        scrapydServerId: this.scrapydServerId,
+      })
 
       if (res.code == 0) {
-        this.list = res.data.list;
-        this.total = res.data.total;
+        this.list = res.data.list
+        this.total = res.data.total
 
         this.statusInfo = {
           total: res.data.total,
           success: res.data.success,
           error: res.data.error,
-        };
+        }
       }
-      
-      this.listLoading = false;
+
+      this.listLoading = false
     },
 
     handleStatusChange() {
-      this.page = 1;
-      this.getData();
+      this.page = 1
+      this.getData()
     },
 
     handleProjectChange() {
-      this.page = 1;
-      this.getData();
+      this.page = 1
+      this.getData()
     },
     handleSpiderChange() {
-      this.page = 1;
-      this.getData();
+      this.page = 1
+      this.getData()
     },
 
     handleSuccess() {
-      this.page = 1;
-      this.getData();
+      this.page = 1
+      this.getData()
     },
   },
 
   created() {
-    this.schedule_job_id = this.$route.query.job;
-    this.project = this.$route.query.project;
-    this.spider = this.$route.query.spider;
+    this.schedule_job_id = this.$route.query.job
+    this.project = this.$route.query.project
+    this.spider = this.$route.query.spider
 
-    this.getData();
+    this.getData()
   },
-};
+}
 </script>
 
-<style lang="scss" scoped>
-</style>
+<style lang="scss" scoped></style>

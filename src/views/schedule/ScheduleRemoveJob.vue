@@ -8,6 +8,8 @@
       v-bind="$attrs"
       icon="el-icon-delete"
       size="mini"
+      class="color--danger"
+      type="text"
     ></el-button>
   </el-popconfirm>
 

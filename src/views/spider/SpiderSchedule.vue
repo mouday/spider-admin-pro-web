@@ -2,6 +2,7 @@
   <el-button
     v-bind="$attrs"
     @click="handleSchedule"
+    type="text"
     size="mini"
     icon="el-icon-video-play"
   ></el-button>

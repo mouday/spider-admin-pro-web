@@ -13,6 +13,9 @@
       type="spider"
       v-loading="listLoading"
       :data="list"
+      :scrapydServerId="scrapydServerId"
+      :project="project"
+      :spider="spider"
     />
   </div>
 </template>
@@ -30,6 +33,7 @@ export default {
 
   data() {
     return {
+      scrapydServerId: '',
       status: '',
       project: '',
       spider: '',
@@ -50,6 +54,7 @@ export default {
       this.listLoading = true;
 
       const res = await this.$Http.scrapydSpiderLogs({
+        scrapydServerId: this.scrapydServerId,
         project: this.project,
         spider: this.spider,
       });
@@ -65,8 +70,9 @@ export default {
   },
 
   created() {
-    this.project = this.$route.params.project;
-    this.spider = this.$route.params.spider;
+    this.scrapydServerId = this.$route.query.scrapydServerId;
+    this.project = this.$route.query.project;
+    this.spider = this.$route.query.spider;
     this.getData();
   },
 };

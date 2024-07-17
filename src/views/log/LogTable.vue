@@ -9,7 +9,7 @@
       width="60"
     >
       <template slot-scope="scope">
-        {{ scope.$index + 1}}
+        {{ scope.$index + 1 }}
       </template>
     </el-table-column>
 
@@ -20,8 +20,9 @@
       <template slot-scope="scope">
         <router-link
           :to="getRoute(scope.row.filename)"
-          :target="type=='spider'?'_blank': '_self'"
-        >{{scope.row.filename}}</router-link>
+          :target="type == 'spider' ? '_blank' : '_self'"
+          >{{ scope.row.filename }}</router-link
+        >
       </template>
     </el-table-column>
 
@@ -48,10 +49,9 @@
       align="center"
     >
       <template slot-scope="scope">
-        <mo-text :text="scope.row.content_encoding " />
+        <mo-text :text="scope.row.content_encoding" />
       </template>
     </el-table-column>
-
   </mo-table>
 </template>
 
@@ -64,6 +64,9 @@ export default {
   props: {
     // logs/project/spider
     type: { type: String },
+    scrapydServerId: { type: String },
+    project: { type: String },
+    spider: { type: String },
   },
 
   components: {},
@@ -73,7 +76,7 @@ export default {
       project: '',
       spider: '',
       job: '',
-    };
+    }
   },
 
   computed: {},
@@ -85,40 +88,42 @@ export default {
       if (this.type == 'logs') {
         return {
           name: 'logs-project',
-          params: {
+          query: {
+            scrapydServerId: this.scrapydServerId,
             project: filename,
           },
-        };
+        }
       } else if (this.type == 'project') {
         return {
           name: 'logs-project-spider',
-          params: {
+          query: {
+            scrapydServerId: this.scrapydServerId,
             project: this.project,
             spider: filename,
           },
-        };
+        }
       } else if (this.type == 'spider') {
         return {
           name: 'logs-project-spider-job',
-          params: {
+          query: {
+            scrapydServerId: this.scrapydServerId,
             project: this.project,
             spider: this.spider,
             job: filename,
           },
-        };
+        }
       }
     },
   },
 
   created() {
-    this.project = this.$route.params.project;
-    this.spider = this.$route.params.spider;
-    this.job = this.$route.params.job;
+    // this.project = this.$route.params.project;
+    // this.spider = this.$route.params.spider;
+    // this.job = this.$route.params.job;
 
-    this.getData();
+    this.getData()
   },
-};
+}
 </script>
 
-<style lang="scss" scoped>
-</style>
+<style lang="scss" scoped></style>

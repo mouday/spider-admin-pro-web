@@ -10,7 +10,7 @@
         width="60"
       >
         <template slot-scope="scope">
-          {{ scope.$index + 1}}
+          {{ scope.$index + 1 }}
         </template>
       </el-table-column>
 
@@ -20,7 +20,7 @@
         width="150px"
       >
         <template slot-scope="scope">
-          {{scope.row.project}}
+          {{ scope.row.project }}
         </template>
       </el-table-column>
 
@@ -29,9 +29,7 @@
         align="center"
       >
         <template slot-scope="scope">
-
-          {{scope.row.spider}}
-
+          {{ scope.row.spider }}
         </template>
       </el-table-column>
 
@@ -50,7 +48,7 @@
         width="80"
       >
         <template slot-scope="scope">
-          {{scope.row.schedule_mode}}
+          {{ scope.row.schedule_mode }}
         </template>
       </el-table-column>
 
@@ -71,7 +69,6 @@
         show-overflow-tooltip
       >
         <template slot-scope="scope">
-
           <mo-text :text="scope.row.message"></mo-text>
         </template>
       </el-table-column>
@@ -82,7 +79,7 @@
         width="80px"
       >
         <template slot-scope="scope">
-          {{scope.row.run_status || '-'}}
+          {{ scope.row.run_status || '-' }}
         </template>
       </el-table-column>
 
@@ -92,7 +89,7 @@
         width="60"
       >
         <template slot-scope="scope">
-          {{scope.row.item_count || '-'}}
+          {{ scope.row.item_count || '-' }}
         </template>
       </el-table-column>
 
@@ -102,7 +99,7 @@
         width="60"
       >
         <template slot-scope="scope">
-          {{scope.row.log_error_count || '-'}}
+          {{ scope.row.log_error_count || '-' }}
         </template>
       </el-table-column>
 
@@ -112,7 +109,7 @@
         width="80px"
       >
         <template slot-scope="scope">
-          {{scope.row.duration_str || '-'}}
+          {{ scope.row.duration_str || '-' }}
         </template>
       </el-table-column>
 
@@ -124,9 +121,18 @@
         <template slot-scope="scope">
           <router-link
             v-if="scope.row.spider_job_id"
-            :to="{'name': 'logs-project-spider-job', params: {project: scope.row.project, spider: scope.row.spider, job :scope.row.spider_job_id}}"
+            :to="{
+              name: 'logs-project-spider-job',
+              query: {
+                scrapydServerId: scope.row.scrapyd_server_id,
+                project: scope.row.project,
+                spider: scope.row.spider,
+                job: scope.row.spider_job_id,
+              },
+            }"
             target="_blank"
-          ><i class="el-icon-document"></i> 日志</router-link>
+            ><i class="el-icon-document"></i> 日志</router-link
+          >
           <span v-else>-</span>
         </template>
       </el-table-column>
@@ -137,10 +143,9 @@
         width="170px"
       >
         <template slot-scope="scope">
-          {{scope.row.create_time}}
+          {{ scope.row.create_time }}
         </template>
       </el-table-column>
-
     </mo-table>
   </div>
 </template>
@@ -148,8 +153,7 @@
 <script>
 export default {
   name: '',
-};
+}
 </script>
 
-<style lang="scss" scoped>
-</style>
+<style lang="scss" scoped></style>

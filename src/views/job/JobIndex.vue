@@ -53,12 +53,12 @@ export default {
 
   methods: {
     async getData() {
-       if (this.scrapydServerId && this.project) {
+      if (this.scrapydServerId && this.project) {
         // pass
       } else {
         return
       }
-      
+
       this.listLoading = true
 
       const res = await this.$Http.scrapydlistJobsMerge({

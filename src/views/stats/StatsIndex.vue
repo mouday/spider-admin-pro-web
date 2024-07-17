@@ -2,6 +2,7 @@
   <div class="app-container">
 
     <StatsTool
+      :scrapydServerId.sync="scrapydServerId"
       :project.sync="project"
       :spider.sync="spider"
       @project-change="handleProjectChange"
@@ -55,6 +56,7 @@ export default {
       // 排序
       orderProp: '',
       orderType: '',
+      scrapydServerId: ''
     };
   },
 
@@ -68,6 +70,7 @@ export default {
         page: this.page,
         size: this.size,
 
+        scrapydServerId: this.scrapydServerId,
         project: this.project,
         spider: this.spider,
 

@@ -9,6 +9,7 @@
     <LogTable
       class="mt-md"
       type="logs"
+      :scrapydServerId="scrapydServerId"
       v-loading="listLoading"
       :data="list"
     />
