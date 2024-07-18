@@ -86,7 +86,7 @@ export const constantRoutes = [
       {
         path: "list",
         name: "project-list",
-        component: () => import("@/views/project/projectIndex"),
+        component: () => import("../views/project/projectIndex.vue"),
         meta: { title: "项目列表", icon: "project" }
       },
 

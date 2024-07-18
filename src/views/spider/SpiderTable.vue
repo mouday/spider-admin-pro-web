@@ -31,7 +31,11 @@
         <router-link
           :to="{
             name: 'schedule-log-list',
-            query: { project: project, spider: scope.row.spider },
+            query: {
+              scrapydServerId: scrapydServerId,
+              project: project,
+              spider: scope.row.spider,
+            },
           }"
           target="_blank"
           ><i class="el-icon-document"></i> 日志</router-link
@@ -48,7 +52,11 @@
         <router-link
           :to="{
             name: 'stats-list',
-            query: { project: project, spider: scope.row.spider },
+            query: {
+              scrapydServerId: scrapydServerId,
+              project: project,
+              spider: scope.row.spider,
+            },
           }"
           target="_blank"
           ><i class="el-icon-document"></i> 统计</router-link
@@ -65,7 +73,11 @@
         <router-link
           :to="{
             name: 'logs-project-spider',
-            params: { project: project, spider: scope.row.spider },
+            query: {
+              scrapydServerId: scrapydServerId,
+              project: project,
+              spider: scope.row.spider,
+            },
           }"
           target="_blank"
           ><i class="el-icon-document"></i> 日志</router-link

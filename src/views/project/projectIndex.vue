@@ -44,6 +44,11 @@ export default {
 
   created() {
     this.scrapydServerId = this.$route.query.scrapydServerId
+    
+    // 转为字符串
+    if (this.scrapydServerId) {
+      this.scrapydServerId = this.scrapydServerId + ''
+    }
   },
 
   methods: {

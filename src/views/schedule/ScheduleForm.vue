@@ -16,7 +16,7 @@
         ref="SelectScrapydServer"
         style="width: 300px"
         :value.sync="form.scrapyd_server_id"
-        :disabled="job_id != null"
+        :disabled="scrapydServerId !=null || job_id != null"
         @on-init="handleSelectScrapydServerInit"
         @change="handleSelectScrapydServerChange"
       ></SelectScrapydServer>

@@ -18,7 +18,7 @@ export default {
   name: '',
 
   props: {
-    value: { type: String | Number },
+    value: { type: String },
   },
 
   components: {},
@@ -32,6 +32,7 @@ export default {
   computed: {
     _value: {
       get() {
+        // console.log(this.value, typeof this.value);
         return this.value
       },
       set(val) {
@@ -53,7 +54,7 @@ export default {
 
       this.list = list
 
-      this.$emit('on-init', {list: list})
+      this.$emit('on-init', { list: list })
     },
   },
 

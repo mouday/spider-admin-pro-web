@@ -1,20 +1,29 @@
 <template>
   <div class="app-container home-container">
+    <SelectScrapydServer
+      :value.sync="scrapydServerId"
+      @on-init="handleSelectScrapydServerInit"
+      @change="resetData"
+    ></SelectScrapydServer>
 
-    <HomeDataInfo />
+    <div class="mt-md">
+      <HomeDataInfo
+        :key="scrapydServerId"
+        :scrapydServerId="scrapydServerId"
+      />
 
-    <HomeSystemInfo />
+      <HomeSystemInfo />
 
-    <HomeConfig />
+      <HomeConfig />
 
-    <!-- <HomeCard
+      <!-- <HomeCard
       desc="User from"
       title="用户来源"
     >
       <ChartPie :value="pieData" />
     </HomeCard> -->
 
-    <!-- <HomeCard
+      <!-- <HomeCard
       desc="User active"
       title="每周用户活跃量"
     >
@@ -28,28 +37,27 @@
       <ChartBar :value="lineData" />
     </HomeCard> -->
 
-    <!-- <HomeCard
+      <!-- <HomeCard
       desc="progress"
       title="进度条"
     >
       <HomeProgress :value="pieData" />
     </HomeCard> -->
 
-    <!-- <HomeCard
+      <!-- <HomeCard
       desc="progress"
       title="目标完成度"
     >
       <Home-circle />
     </HomeCard> -->
 
-    <!-- <HomeCard
+      <!-- <HomeCard
       desc="progress"
       title="漏斗图"
     >
       <ChartFunnel :value="pieData" />
     </HomeCard> -->
-
-  </div>
+    </div>
   </div>
 </template>
 
@@ -61,10 +69,11 @@
 // import HomeCircle from './components/home-circle';
 // import HomeProgress from './components/home-progress';
 // import ChartFunnel from './components/chart-funnel';
-import HomeSystemInfo from './components/HomeSystemInfo.vue';
-import HomeDataInfo from './components/HomeDataInfo.vue';
-import HomeConfig from './components/HomeConfig.vue';
-import HomeCard from './components/card.vue';
+import HomeSystemInfo from './components/HomeSystemInfo.vue'
+import HomeDataInfo from './components/HomeDataInfo.vue'
+import HomeConfig from './components/HomeConfig.vue'
+import HomeCard from './components/card.vue'
+import SelectScrapydServer from '@/components/SelectScrapydServer.vue'
 
 export default {
   name: 'Home',
@@ -81,10 +90,14 @@ export default {
     // HomeProgress,
     HomeSystemInfo,
     HomeDataInfo,
+    SelectScrapydServer,
   },
+
   props: {},
+
   data() {
     return {
+      scrapydServerId: '',
       // 内存
       virtual_memory: {},
       // 磁盘
@@ -130,14 +143,28 @@ export default {
         Sat: 1322,
         Sun: 1324,
       },
-    };
+    }
   },
   computed: {},
   watch: {},
   filters: {},
 
-  methods: {},
-};
+  methods: {
+    resetData() {},
+    getData() {},
+    handleSelectScrapydServerInit({ list }) {
+      console.log(list)
+
+      if (!this.scrapydServerId) {
+        if (list && list.length > 0) {
+          this.scrapydServerId = list[0].value
+        }
+      }
+
+      this.getData()
+    },
+  },
+}
 </script>
 
 <style lang="less">

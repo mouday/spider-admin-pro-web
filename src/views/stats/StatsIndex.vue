@@ -118,6 +118,7 @@ export default {
   },
 
   created() {
+    this.scrapydServerId = this.$route.query.scrapydServerId
     this.project = this.$route.query.project;
     this.spider = this.$route.query.spider;
 

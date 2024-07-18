@@ -12,8 +12,9 @@
 
       <p>
         <i class="icon"></i>
-        <span>Scrapyd</span>
-        <span style="margin-left: 20px">{{ scrapyd.url }}</span>
+        <span>Scrapyd可用数量：</span>
+
+        <span style="margin-left: 20px">{{ scrapyd.count }}</span>
 
         <template>
           <span style="margin-left: 20px">

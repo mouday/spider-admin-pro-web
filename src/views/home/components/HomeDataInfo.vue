@@ -5,25 +5,29 @@
   >
     <ActivePlate :infoList="list" />
   </HomeCard>
-
 </template>
 
 <script>
-import ActivePlate from '@/components/active-plate/active-plate.vue';
-import HomeCard from './card.vue';
+import ActivePlate from '@/components/active-plate/active-plate.vue'
+import HomeCard from './card.vue'
 
 export default {
   name: '',
 
-  props: [],
+  props: {
+    scrapydServerId: {
+      type: String,
+      default: () => '',
+    },
+  },
 
-  components: {HomeCard, ActivePlate},
+  components: { HomeCard, ActivePlate },
 
   data() {
     return {
-        list: [],
+      list: [],
 
-        infoCardData: [
+      infoCardData: [
         {
           title: '新增用户',
           icon: 'md-person-add',
@@ -46,23 +50,25 @@ export default {
         },
         { title: '新增页面', icon: 'md-map', count: 14, color: '#91AFC8' },
       ],
-    };
+    }
   },
 
   computed: {},
 
   methods: {
     async getData() {
-        const res = await this.$Http.systemSystemData()
-        this.list = res.data;
+      const res = await this.$Http.systemSystemData({
+        scrapydServerId: this.scrapydServerId,
+      })
+
+      this.list = res.data
     },
   },
 
   created() {
-    this.getData();
+    this.getData()
   },
-};
+}
 </script>
 
-<style lang="scss" scoped>
-</style>
+<style lang="scss" scoped></style>
