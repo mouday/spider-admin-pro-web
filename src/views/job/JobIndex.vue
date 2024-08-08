@@ -1,5 +1,6 @@
 <template>
   <div class="app-container">
+    
     <JobTool
       :statusInfo="statusInfo"
       :status.sync="status"
@@ -16,6 +17,7 @@
     <JobTable
       v-loading="listLoading"
       :data="list"
+      :scrapydServerId="scrapydServerId"
       :project="project"
       @success="getData"
     />
@@ -96,6 +98,8 @@ export default {
     },
 
     handleSpiderToolInit(data) {
+      console.log('handleSpiderToolInit', data);
+      
       if (data && data.length > 0) {
         this.project = data[0].project
       }

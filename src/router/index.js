@@ -156,7 +156,7 @@ export const constantRoutes = [
       {
         path: "list",
         name: "job-list",
-        component: () => import("@/views/job/JobIndex"),
+        component: () => import("../views/job/JobIndex.vue"),
         meta: { title: "任务列表", icon: "list" },
       }
     ]

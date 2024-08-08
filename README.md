@@ -4,6 +4,8 @@
 
 基于 [vue-admin-template](https://github.com/PanJiaChen/vue-admin-template) 改造的一个后台管理模板
 
+开发使用的版本：node v22.5.1
+
 整合和扩展的内容包括：
 Vue
 Element UI
