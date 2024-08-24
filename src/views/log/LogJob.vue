@@ -55,7 +55,7 @@ export default {
         job: this.job,
       })
 
-      this.content = res.data
+      this.content = res
 
       this.listLoading = false
     },

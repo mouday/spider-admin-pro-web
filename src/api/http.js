@@ -29,23 +29,30 @@ instance.interceptors.request.use(
 instance.interceptors.response.use(
   (res) => {
     let result = res.data
-    // 4000 token无效,或者过期
-    if (result.code == 4000) {
-      // Store.dispatch('user/resetToken')
-      // 如果路径是登录页，就不跳转
-      // if(window.location.pathname != '/login'){
-      //   window.location.href = '/login'
-      // }
-      removeToken()
-      window.location.reload()
+
+    if (typeof res.data == 'string') {
+
+    } else {
+      // 4000 token无效,或者过期
+      if (result.code == 4000) {
+        // Store.dispatch('user/resetToken')
+        // 如果路径是登录页，就不跳转
+        // if(window.location.pathname != '/login'){
+        //   window.location.href = '/login'
+        // }
+        removeToken()
+        window.location.reload()
+      }
+
+      if (result.code == 0) {
+        result.ok = true
+      } else {
+        result.ok = false
+        SingleMessage.error(result.msg)
+      }
     }
 
-    if (result.code == 0) {
-      result.ok = true
-    } else {
-      result.ok = false
-      SingleMessage.error(result.msg)
-    }
+
     return result
   },
   (err) => {
