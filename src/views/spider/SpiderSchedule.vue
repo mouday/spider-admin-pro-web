@@ -16,6 +16,7 @@ export default {
     spider: { type: String },
     project: { type: String },
     scrapydServerId: { type: String },
+    options: { type: String },
   },
 
   components: {},
@@ -32,6 +33,7 @@ export default {
         scrapydServerId: this.scrapydServerId,
         project: this.project,
         spider: this.spider,
+        options: this.options,
       });
 
       if (res.code == 0) {
