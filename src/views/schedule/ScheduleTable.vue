@@ -160,6 +160,7 @@
             :project="scope.row.kwargs.project"
             :spider="scope.row.kwargs.spider"
             :scrapydServerId="scope.row.kwargs.scrapyd_server_id"
+            :options="scope.row.kwargs.options"
           />
 
           <ScheduleAdd
