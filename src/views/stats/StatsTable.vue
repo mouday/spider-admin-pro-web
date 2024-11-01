@@ -118,9 +118,16 @@
         width="80px"
       >
         <template slot-scope="scope">
-
           <router-link
-            :to="{'name': 'logs-project-spider-job', params: {project: scope.row.project, spider: scope.row.spider, job :scope.row.spider_job_id}}"
+            :to="{
+              'name': 'logs-project-spider-job',
+              query: {
+                scrapydServerId: scope.row.scrapyd_server_id,
+                project: scope.row.project,
+                spider: scope.row.spider,
+                job :scope.row.spider_job_id
+              },
+            }"
             target="_blank"
           ><i class="el-icon-document"></i> 日志</router-link>
 

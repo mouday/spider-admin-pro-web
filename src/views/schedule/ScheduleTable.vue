@@ -156,12 +156,13 @@
         width="100"
       >
         <template slot-scope="scope">
-          <SpiderSchedule
+          <SpiderExecute
             :project="scope.row.kwargs.project"
             :spider="scope.row.kwargs.spider"
             :scrapydServerId="scope.row.kwargs.scrapyd_server_id"
             :options="scope.row.kwargs.options"
-          />
+            @on-success="$emit('success')"
+        />
 
           <ScheduleAdd
             class="ml-sm"
@@ -183,7 +184,7 @@
 <script>
 // import ProjectDelete from "./ProjectDelete.vue";
 import ScheduleJobStatus from './ScheduleJobStatus.vue'
-import SpiderSchedule from '@/views/spider/SpiderSchedule.vue'
+import SpiderExecute from "@/views/spider/SpiderExecute.vue"
 import ScheduleRemoveJob from './ScheduleRemoveJob.vue'
 import ScheduleAdd from './ScheduleAdd.vue'
 import {
@@ -199,7 +200,7 @@ export default {
   components: {
     ScheduleAdd,
     ScheduleJobStatus,
-    SpiderSchedule,
+    SpiderExecute,
     ScheduleRemoveJob,
   },
 

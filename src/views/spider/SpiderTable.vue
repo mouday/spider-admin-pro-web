@@ -106,10 +106,11 @@
       width="60px"
     >
       <template slot-scope="scope">
-        <SpiderSchedule
+        <SpiderExecute
           :spider="scope.row.spider"
           :project="project"
           :scrapydServerId="scrapydServerId"
+          @on-success="$emit('success')"
         />
       </template>
     </el-table-column>
@@ -117,7 +118,7 @@
 </template>
 
 <script>
-import SpiderSchedule from './SpiderSchedule.vue'
+import SpiderExecute from '@/views/spider/SpiderExecute.vue'
 import ScheduleAdd from '@/views/schedule/ScheduleAdd.vue'
 
 export default {
@@ -128,7 +129,7 @@ export default {
     scrapydServerId: { type: String, default: '' },
   },
 
-  components: { SpiderSchedule, ScheduleAdd },
+  components: { ScheduleAdd, SpiderExecute },
 
   data() {
     return {}
